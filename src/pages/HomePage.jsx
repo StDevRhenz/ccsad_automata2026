@@ -46,7 +46,7 @@ export default function HomePage() {
         <div className="footer-members">
           <a href="https://github.com/StDevRhenz" target="_blank" rel="noopener noreferrer">Rhenz Ganotice</a>
           <span aria-hidden="true">·</span>
-          <a href="https://github.com/shamKirzon" target="_blank" rel="noopener noreferrer">Shammy Kierzon Suyat</a>
+          <a href="https://github.com/shamKirzon" target="_blank" rel="noopener noreferrer">Shammy Kierson Suyat</a>
           <span aria-hidden="true">·</span>
           <a href="https://github.com/yajiiiii" target="_blank" rel="noopener noreferrer">Ijay Jaculbe</a>
         </div>

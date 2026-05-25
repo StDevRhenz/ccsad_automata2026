@@ -1,14 +1,198 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Group 5 — Placeholder</title>
-    <style>body{font-family:system-ui, sans-serif;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUTOMATA // CASE STUDIES SUITE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <div>
-      <h1>Group 5 — Placeholderssss</h1>
+    <div class="terminal">
+      <div class="sys-header">
+        <div class="sys-logo">AUTOMATA // SYS</div>
+        <div class="sys-status">
+          <div class="status-dot"></div>
+          <span>ONLINE</span>
+          <span style="opacity: 0.4">|</span>
+          <span id="clock">--:--:--</span>
+        </div>
+      </div>
+
+      <div id="landingPage" class="page active">
+        <div class="landing-eyebrow">// SYSTEM BOOT SEQUENCE</div>
+        <div class="landing-title">AUTOMATA<br /><span>CASE STUDIES</span></div>
+        <div class="tag-line">COMPILATION SUITE // V.01</div>
+
+        <div class="info-card bracket-box">
+          <div class="corner-tl"></div>
+          <div class="corner-br"></div>
+          <div class="info-card-label">▸ PROJECT MANIFEST</div>
+          <div class="info-card-row">
+            <span class="key">CLASSIFICATION</span>
+            <span class="val">GROUP PORTFOLIO</span>
+          </div>
+          <div class="info-card-row">
+            <span class="key">TRACKED MODULES</span>
+            <span class="val">01 — 05</span>
+          </div>
+          <div class="info-card-row">
+            <span class="key">ENGINE</span>
+            <span class="val">JAVASCRIPT / HTML5</span>
+          </div>
+          <div class="info-card-row">
+            <span class="key">STATUS</span>
+            <span class="val" style="color: var(--green)">● OPERATIONAL</span>
+          </div>
+        </div>
+
+        <div class="roster-card bracket-box">
+          <div class="corner-tl"></div>
+          <div class="corner-br"></div>
+          <div class="roster-label">▸ REGISTERED OPERATORS</div>
+          <div class="roster-grid">
+            <div class="roster-entry">
+              <span class="roster-id">OP-01</span>
+              <span class="roster-name">Andre Victor A. Arcilla</span>
+            </div>
+            <div class="roster-entry">
+              <span class="roster-id">OP-02</span>
+              <span class="roster-name">Carl Angelo T. Jamero</span>
+            </div>
+            <div class="roster-entry">
+              <span class="roster-id">OP-03</span>
+              <span class="roster-name">Yuji M. Midorikawa</span>
+            </div>
+            <div class="roster-entry">
+              <span class="roster-id">OP-04</span>
+              <span class="roster-name">Ralph Isra P. Espartero</span>
+            </div>
+            <div class="roster-entry">
+              <span class="roster-id">OP-05</span>
+              <span class="roster-name">Edmhar M. Olarte</span>
+            </div>
+            <div class="roster-entry">
+              <span class="roster-id">OP-06</span>
+              <span class="roster-name">John Lenard B. Felipe</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider">
+          <div class="divider-line"></div>
+          <div class="divider-text">AWAITING INPUT</div>
+          <div class="divider-line"></div>
+        </div>
+
+        <button
+          class="btn-primary"
+          onclick="switchView('mainMenu', 'landingPage')"
+        >
+          <span>INITIALIZE SYSTEM</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+
+      <div id="mainMenu" class="page">
+        <div class="section-title">MAIN MENU PANEL</div>
+        <div class="section-subtitle">SELECT A MODULE TO EXECUTE</div>
+
+        <div class="menu-grid">
+          <button class="menu-btn" onclick="openModule('Palindrome')">
+            <span class="btn-index">01</span>
+            <span>Palindrome Checker</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button class="menu-btn" onclick="openModule('Division')">
+            <span class="btn-index">02</span>
+            <span>Division Algorithm</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button class="menu-btn" onclick="openModule('Euclidean')">
+            <span class="btn-index">03</span>
+            <span>Euclidean &amp; LCM Algorithm</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button class="menu-btn" onclick="openModule('Collatz')">
+            <span class="btn-index">04</span>
+            <span>Collatz Sequence Finder</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button class="menu-btn" onclick="openModule('Recursion')">
+            <span class="btn-index">05</span>
+            <span>Recursive Sequence Selector</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button
+            class="menu-btn back"
+            onclick="switchView('landingPage', 'mainMenu')"
+          >
+            <span class="btn-index" style="color: inherit">←</span>
+            <span>Back to Cover</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="recursionMenu" class="page">
+        <div class="rec-badge">MODULE 05 // RECURSION</div>
+        <div class="section-title">SEQUENCE SELECTOR</div>
+        <div class="section-subtitle">CHOOSE A SEQUENCE TYPE</div>
+
+        <div class="menu-grid">
+          <button class="menu-btn" onclick="openModule('Fibonacci')">
+            <span class="btn-index">01</span>
+            <span>Fibonacci Numbers</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button class="menu-btn" onclick="openModule('Lucas')">
+            <span class="btn-index">02</span>
+            <span>Lucas Numbers</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button class="menu-btn" onclick="openModule('Tribonacci')">
+            <span class="btn-index">03</span>
+            <span>Tribonacci Numbers</span>
+            <span class="btn-chevron">›</span>
+          </button>
+          <button
+            class="menu-btn back"
+            onclick="switchView('mainMenu', 'recursionMenu')"
+          >
+            <span class="btn-index" style="color: inherit">←</span>
+            <span>Back to Main Menu</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="workspace" class="page">
+        <div class="ws-header bracket-box">
+          <div class="corner-tl"></div>
+          <div class="corner-br"></div>
+          <div class="ws-tag" id="wsTag">// MODULE ACTIVE</div>
+          <div class="ws-title" id="wsTitle">Module Title</div>
+          <div class="ws-desc" id="wsDesc"></div>
+        </div>
+
+        <div class="input-panel" id="inputContainer"></div>
+
+        <div class="action-row">
+          <button class="btn-execute" onclick="executeModule()">
+            ▶ EXECUTE
+          </button>
+          <button class="btn-back-ws" onclick="exitWorkspace()">← ABORT</button>
+        </div>
+
+        <div class="output-panel" id="output">
+          <div class="output-header">// OUTPUT STREAM</div>
+        </div>
+      </div>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

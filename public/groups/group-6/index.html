@@ -1,14 +1,86 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Group 6 — Placeholder</title>
-    <style>body{font-family:system-ui, sans-serif;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group 6</title>
+    <!-- Google Fonts: DM Sans + DM Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <h1>Group 6 — Placeholderssss</h1>
+    <!-- PAGE 1: INTRO -->
+    <div id="introPage" class="page page--intro">
+      <div class="intro__card">
+        <h1 class="intro__title">III - CCSAD - Group 6</h1>
+        <p class="intro__subtitle">
+          A compiled collection of interactive activities in one system for
+          exploring mathematical sequences and algorithms.
+        </p>
+
+        <div class="members">
+          <p class="members__label">GROUP MEMBERS</p>
+          <div class="members__grid">
+            <!-- 10 members, 2-column grid, format: LastName, FirstName -->
+            <span class="member-card">Blanco, Paulyn</span>
+            <span class="member-card">Ganotice, Rhenz</span>
+            <span class="member-card">Sanchez, Lorena</span>
+            <span class="member-card">Suyat, Shammy</span>
+            <span class="member-card">Torres, Dannah</span>
+          </div>
+        </div>
+
+        <button id="startBtn" class="btn btn--primary">Get Started →</button>
+      </div>
     </div>
+
+    <!-- PAGE 2: HOME -->
+    <div id="homePage" class="page page--home hidden">
+      <div class="split-layout">
+        <!-- LEFT PANEL -->
+        <aside class="panel panel--left">
+          <div class="panel__header">
+            <span class="app-name">Group 6 Project</span>
+            <p class="panel__hint">Select a topic to explore</p>
+          </div>
+          <nav class="topic-nav">
+            <button class="topic-btn" data-topic="palindrome">
+              Palindrome
+            </button>
+            <button class="topic-btn" data-topic="division">
+              Division Algorithm
+            </button>
+            <button class="topic-btn" data-topic="euclidean">
+              Euclidean Algorithm
+            </button>
+            <button class="topic-btn" data-topic="collatz">Collatz</button>
+            <button class="topic-btn" data-topic="fibonacci">Fibonacci</button>
+            <button class="topic-btn" data-topic="tribonacci">
+              Tribonacci
+            </button>
+            <button class="topic-btn" data-topic="lucas">Lucas</button>
+          </nav>
+        </aside>
+
+        <!-- RIGHT PANEL -->
+        <main class="panel panel--right" id="rightPanel">
+          <!-- Default empty state — replaced by renderTopic() on button click -->
+          <div class="empty-state">
+            <div class="empty-state__icon">✧</div>
+            <p class="empty-state__text">
+              Ready to explore? Select a topic from the left panel to begin your
+              mathematical journey.
+            </p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

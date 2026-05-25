@@ -1,0 +1,516 @@
+/* CREDITS
+
+CODEPEN UI
+   - https://codepen.io/RobotsPlay/pen/bGeNGdx
+   - https://codepen.io/arron21/pen/oYrNjy
+   - https://codepen.io/lgkonline/pen/WpMRQG
+   - https://codepen.io/Margarita-the-solid/pen/OPRxZmV
+   - https://codepen.io/dui77/pen/dyadyLX
+
+All UI designs are derivatives of the above pens, heavily modified to fit the NieR:Automata theme for our subject Automata.
+The first to third pens were used for the initial layout and component designs. 
+The fourth pen was used for the marquee and status bar, which are new additions to the design.
+The fifth pen was used to test neobrutalist elements and the card design, which were then modified to fit the overall theme.
+
+Design idea: The design first was to implement a neobrutalist style + dear imgui style, then I added some pens from codepen with nier:automata color palette and typography 
+then just blend them all together and hope for the best lol
+
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Raleway:wght@400;700&display=swap');
+
+/* root */
+:root {
+    /* color scheme */
+    --yorha-bg: #C8C2AA;
+    --yorha-brown: #48463D;
+    --yorha-brown-70: rgba(72, 70, 61, 0.7);
+    --yorha-brown-25: rgba(72, 70, 61, 0.25);
+    --yorha-brown-15: rgba(72, 70, 61, 0.15);
+    
+    /* try to mix imgui + neobrutalist */
+    --primary: var(--yorha-brown);
+    --bg-dark: var(--yorha-bg);
+    --bg-panel: rgba(194, 189, 166, 0.8);
+    --bg-titlebar: var(--yorha-brown);
+    --border-col: var(--yorha-brown);
+    --text-main: var(--yorha-brown);
+    --text-muted: rgba(72, 70, 61, 0.6);
+    --text-dim: rgba(72, 70, 61, 0.3);
+
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Raleway', sans-serif;
+    --content-width: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html { font-size: 62.5%; }
+
+body {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+    background-color: var(--yorha-bg);
+    color: var(--yorha-brown);
+    height: 100vh;
+    padding: 0;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+/* buttons n clickables */
+.btn-primary, .nav-link, .sidebar-btn--yorha, .nav__brand.clickable, .card__small--yorha.clickable {
+    cursor: pointer !important;
+    position: relative;
+}
+
+/* navbar */
+.nav {
+    background-color: var(--yorha-brown);
+    height: 4.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-bottom: 3px solid #111;
+    font-family: var(--font-mono);
+    margin: 1.4rem 0 0 0;
+    width: 100%;
+}
+.nav__brand {
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--yorha-bg);
+    letter-spacing: .12em;
+    border-right: 1px solid var(--yorha-bg);
+    margin-right: auto;
+}
+.nav__brand.clickable:hover { background: rgba(255,255,255,0.1); }
+
+.nav__links { display: flex; align-items: stretch; }
+.nav__links a {
+    color: rgba(200, 194, 170, 0.6);
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(200, 194, 170, 0.2);
+    transition: all .2s;
+}
+
+.nav__links a::before {
+    content: '◼︎';
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav__links a:hover, .nav__links a.active { 
+    background: rgba(255,255,255,0.05); 
+    color: var(--yorha-bg);
+}
+.nav__links a.active { border-bottom: 3px solid var(--yorha-bg); }
+
+.nav__btn {
+    align-self: stretch;
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid var(--yorha-bg);
+    padding: 0 2rem;
+    font-size: 1.2rem;
+    font-family: var(--font-mono);
+    color: var(--yorha-bg);
+    opacity: 0.8;
+}
+
+/* navbar end */
+
+/* header */
+.header {
+    background-color: var(--yorha-brown-15);
+    height: 22rem;
+    margin: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--yorha-brown);
+    position: relative;
+    overflow: hidden;
+}
+.header__content {
+    padding: 4rem 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header h1 {
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    text-shadow: 5px 5px 0 rgba(72, 70, 61, 0.2);
+    font-family: var(--font-mono);
+    opacity: 0.9;
+}
+
+/* header end */
+
+/* buttons */
+.btn-primary {
+    margin-top: 2rem;
+    background: var(--yorha-brown-25);
+    border: 1px solid var(--yorha-brown);
+    color: var(--yorha-brown);
+    padding: 1.2rem 3.5rem;
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    position: relative;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-primary::before {
+    content: '◼︎';
+    display: inline-block;
+    margin-right: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    visibility: visible;
+}
+
+.btn-primary:hover {
+    background: var(--yorha-brown);
+    color: var(--yorha-bg);
+    box-shadow: 8px 8px 0 rgba(72, 70, 61, 0.2);
+    transform: translate(-2px, -2px);
+}
+
+/* buttons end */
+
+/* cards */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin: 2rem 0;
+}
+.card__small--yorha {
+    background: var(--yorha-brown-15);
+    border: 1px solid var(--yorha-brown);
+    width: 100%;
+    height: 11rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 4px 4px 0 rgba(72, 70, 61, 0.1);
+}
+.card__small--yorha:hover {
+    background: var(--yorha-brown);
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 rgba(72, 70, 61, 0.2);
+}
+.card__small--yorha:hover p { color: var(--yorha-bg); }
+
+.card__small--yorha p:first-child {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+.card__small--yorha p:last-child {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+/* cards end */
+
+/* windows - deployment logs window can be edited here*/
+.window--yorha {
+    background: rgba(194, 189, 166, 0.9);
+    border: 1px solid var(--yorha-brown);
+    box-shadow: 12px 12px 0 rgba(72, 70, 61, 0.15);
+}
+.window--yorha h2 {
+    background: var(--yorha-brown);
+    color: var(--yorha-bg);
+    padding: 1rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    letter-spacing: 0.8rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.8;
+}
+.window--yorha h2::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--yorha-bg);
+}
+.window--yorha h2::after {
+    content: '_';
+    animation: 4s blink infinite linear;
+}
+
+/* windows end */
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: .5; }
+    100% { opacity: 1; }
+}
+
+/* table */
+table { padding: 2rem; width: 100%; }
+table th {
+    color: var(--yorha-brown);
+    border-bottom: 2px solid var(--yorha-brown);
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    padding: 2rem 0 2rem 0;
+    text-align: left;
+}
+table td {
+    color: var(--yorha-brown-70);
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--yorha-brown-15);
+}
+
+/* table end */
+
+/* sidebar */
+.sidebar-btn--yorha {
+    padding: 1.5rem 2rem 1.5rem 4.5rem;
+    background: linear-gradient(90deg, 
+        transparent 0%, transparent 50%,
+        var(--yorha-brown) 50%, var(--yorha-brown) 100%);
+    background-size: 200%;
+    border: none;
+    border-bottom: 1px solid var(--yorha-brown-15);
+    color: var(--yorha-brown);
+    font-family: var(--font-mono);
+    text-align: left;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+
+.sidebar-btn--yorha::before {
+    content: '';
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 12px;
+    background: url("https://assets.codepen.io/3735/nier-pointer.svg") no-repeat;
+    background-size: contain;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-btn--yorha:hover {
+    transform: translate(-2px, -2px);
+}
+
+.sidebar-btn--yorha:hover::before, .sidebar-btn--yorha.active::before {
+    opacity: 1;
+    filter: invert(0); /* brown pointer on tan bg */
+}
+
+.sidebar-btn--yorha:hover, .sidebar-btn--yorha.active {
+    background-position: -100% 100%;
+    color: var(--yorha-bg);
+}
+
+.sidebar-btn--yorha:hover::before, .sidebar-btn--yorha.active::before {
+    filter: invert(1); /* tan pointer on brown bg */
+}
+
+/* sidebar end */
+
+/* marquee */
+.marquee--yorha {
+    background: var(--yorha-brown);
+    color: var(--yorha-bg);
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    bottom: 2.8rem;
+    width: 100%;
+    z-index: 90;
+    font-family: var(--font-mono);
+    font-weight: 800;
+}
+.marquee__inner {
+    display: flex;
+    gap: 4rem;
+    white-space: nowrap;
+    animation: marquee-scroll 45s linear infinite;
+    padding-left: 100%;
+}
+@keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+/* marquee end */
+
+/*  status bar*/
+.statusbar {
+    background: #2a2823;
+    color: rgba(200, 194, 170, 0.5);
+    border-top: 1px solid var(--yorha-brown);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.6rem 2rem;
+    display: flex;
+    gap: 2rem;
+    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    z-index: 100;
+}
+.statusbar span { color: var(--yorha-bg); }
+
+/* status bar end */
+
+/* form inputs */
+.form-group {
+    margin-bottom: 2.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--yorha-brown-70);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+}
+
+.form-input {
+    background: rgba(72, 70, 61, 0.05);
+    border: 2px solid var(--yorha-brown);
+    color: var(--yorha-brown);
+    font-family: var(--font-mono);
+    padding: 1.2rem 1.8rem;
+    width: 100%;
+    max-width: 50rem;
+    outline: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    box-shadow: 4px 4px 0 rgba(72, 70, 61, 0.1);
+}
+
+.form-input:focus {
+    background: rgba(72, 70, 61, 0.1);
+    box-shadow: 8px 8px 0 rgba(72, 70, 61, 0.2);
+    border-color: var(--yorha-brown);
+    transform: translate(-2px, -2px);
+}
+
+/* form inputs end */
+
+/* result area colors */
+.result-success { color: #48463D !important; border-left: 4px solid #48463D; padding-left: 1rem; }
+.result-error { color: #ff5555 !important; border-left: 4px solid #ff5555; padding-left: 1rem; }
+.result-info { color: rgba(72, 70, 61, 0.7) !important; font-size: 1.8rem; }
+.result-info {
+    word-break: normal;
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+.result-info span {
+    display: inline-block;
+}
+
+/* utils */
+.bg-yorha { padding: 4rem 10%; width: 100%; }
+.section-1 {
+    display: flex;
+    flex-direction: row;
+    gap: 6rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* deployment logs */
+.weekly {
+    flex: 1;
+    min-width: 30rem;
+}
+.weekly__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* study container */
+.study-container { 
+    display: flex; 
+    gap: 4rem; 
+    padding: 0; 
+    width: 100%; 
+    height: 100%;
+    align-items: flex-start;
+}
+
+.window.window--yorha {
+    flex: 0 0 50rem;
+    width: 50rem;
+    padding: 2rem;
+}
+
+.active-study {
+    flex: 1;
+    overflow-y: auto;
+    min-width: 0;
+}
+.result-area p {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+.text-muted-yorha { 
+    color: var(--yorha-brown-70); 
+    font-family: var(--font-mono); 
+    font-size: 1.8rem;
+}
+
+/* add margin to prevent content hiding */
+#home-page, #case-studies-page {
+    height: calc(100vh - 5.6rem - 6.8rem);
+    overflow-y: auto;
+    padding-bottom: 4rem;
+}
+
+/* fixes screen sizes (i hope) */
+@media (max-width: 1100px) {
+    .section-1, .study-container { flex-direction: column; }
+    .header__content, .bg-yorha { padding: 4rem 5%; }
+}
