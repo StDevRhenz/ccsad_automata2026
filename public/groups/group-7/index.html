@@ -1,14 +1,171 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Group 7 — Placeholder</title>
-    <style>body{font-family:system-ui, sans-serif;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}</style>
-  </head>
-  <body>
-    <div>
-      <h1>Group 7 — Placeholdersss</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOMATA.exe [ YoRHa Edition ]</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- navbar-->
+    <nav class="nav">
+        <span class="nav__brand clickable" onclick="showPage('home')">AUTOMATA.exe [ v1.0.0 ]</span>
+        <div class="nav__links">
+            <a href="#" class="nav-link active" data-target="home">System</a>
+            <a href="#" class="nav-link" data-target="case-studies">Case Studies</a>
+        </div>
+        <button class="nav__btn">[ STATUS: ONLINE ]</button>
+    </nav>
+    <!-- end navbar -->
+
+    <!--header-->
+    <div id="home-page">
+        <header class="header">
+            <div class="header__content">
+                <h1>YoRHa Analysis Unit</h1>
+                <p>// GLORY TO MANKIND. Analyzing local data structures...</p>
+                <button class="btn-primary" onclick="showPage('case-studies')">ACCESS CASE STUDIES</button>
+            </div>
+        </header>
+    <!-- end header -->
+
+    <!-- body -->
+        <div class="bg-yorha">
+            <section class="section-1">
+                <div class="stats">
+                    <h2>// ACTIVE DATA NODES</h2>
+                    <h3></h3>
+                    <h3></h3>
+                    <div class="card__small card__small--yorha clickable" onclick="showStudy('palindrome')">
+                        <p>TEXT_PROC</p>
+                        <p>Palindrome</p>
+                    </div>
+                    <div class="card__small card__small--yorha clickable" onclick="showStudy('division')">
+                        <p>MATH_UNIT</p>
+                        <p>Division</p>
+                    </div>
+                    <div class="card__small card__small--yorha clickable" onclick="showStudy('euclidean')">
+                        <p>NUM_THEORY</p>
+                        <p>Euclidean</p>
+                    </div>
+                    <div class="card__small card__small--yorha clickable" onclick="showStudy('collatz')">
+                        <p>SEQ_ANALYSIS</p>
+                        <p>Collatz</p>
+                    </div>
+                    <div class="card__small card__small--yorha clickable" onclick="showStudy('recursions')">
+                        <p>REC_LOGIC</p>
+                        <p>Recursion</p>
+                    </div>
+                </div>
+
+                <div class="weekly window window--yorha">
+                    <h2>DEPLOYMENT LOGS</h2>
+                    <table class="weekly__table">
+                        <tr>
+                            <th>Phase</th>
+                            <th>Target Module</th>
+                            <th>Verification</th>
+                        </tr>
+                        <tr>
+                            <td>Unit01</td>
+                            <td>Palindrome Checker</td>
+                            <td>[ CONFIRMED ]</td>
+                        </tr>
+                        <tr>
+                            <td>Unit02</td>
+                            <td>Division Algorithm</td>
+                            <td>[ CONFIRMED ]</td>
+                        </tr>
+                        <tr>
+                            <td>Unit03</td>
+                            <td>Euclidean Algorithm</td>
+                            <td>[ CONFIRMED ]</td>
+                        </tr>
+                        <tr>
+                            <td>Unit04</td>
+                            <td>Collatz Sequence</td>
+                            <td>[ CONFIRMED ]</td>
+                        </tr>
+                        <tr>
+                            <td>Unit05</td>
+                            <td>Recursive Sequence</td>
+                            <td>[ CONFIRMED ]</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div>
     </div>
-  </body>
+
+    <div id="case-studies-page" style="display: none;">
+        <div class="bg-yorha" style="min-height: 80vh;">
+            <div class="section-label" style="margin-bottom: 2rem;">Select logic module for execution</div>
+    <!-- body end -->
+            
+            <!-- sidebar -->
+            <div class="study-container">
+                <div class="window window--yorha" style="width: 28rem; flex-shrink: 0;">
+                    <h2>LOGIC_MODULES</h2>
+                    <div class="sidebar-links">
+                        <button class="sidebar-btn sidebar-btn--yorha" onclick="showStudy('palindrome')" id="btn-palindrome">01_PALINDROME_CHECKER</button>
+                        <button class="sidebar-btn sidebar-btn--yorha" onclick="showStudy('division')" id="btn-division">02_DIVISION_ALGORITHM</button>
+                        <button class="sidebar-btn sidebar-btn--yorha" onclick="showStudy('euclidean')" id="btn-euclidean">03_EUCLIDEAN_ALGORITHM</button>
+                        <button class="sidebar-btn sidebar-btn--yorha" onclick="showStudy('collatz')" id="btn-collatz">04_COLLATZ_SEQUENCE</button>
+                        <button class="sidebar-btn sidebar-btn--yorha" onclick="showStudy('recursions')" id="btn-recursions">05_RECURSIVE_SEQUENCE</button>
+                    </div>
+                </div>
+
+                <!-- inside case studies button or access case studies button, appears when theres no module selected -->
+                <div class="window window--yorha active-study" style="flex-grow: 1;">
+                    <h2 id="study-title">Initialize System...</h2>
+                    <div id="study-content" style="padding: 2rem;">
+                        <p class="text-muted-yorha">// Waiting for module selection...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- scrolling marquee -->
+    <div class="marquee marquee--yorha">
+        <div class="marquee__inner">
+            <span>POD 042: STANDING BY</span>
+            <span>//</span>
+            <span>YoRHa FORCES: DEPLOYED</span>
+            <span>//</span>
+            <span>BLACK BOX INTEGRITY: 100%</span>
+            <span>//</span>
+            <span>TOWER SIGNAL: DETECTED</span>
+            <span>//</span>
+            <span>UNIT 2B: OPERATIONAL</span>
+            <span>//</span>
+            <span>UNIT 9S: OPERATIONAL</span>
+            <span>//</span>
+            <span>MACHINE NETWORK: ACTIVE</span>
+            <span>//</span>
+            <span>BUNKER UPLINK: STABLE</span>
+            <span>//</span>
+            <span>ANDROIDS DO NOT CRY</span>
+            <span>//</span>
+            <span>THIS UNIT HAS NO NAME</span>
+            <span>//</span>
+            <span>PEARL HARBOR DESCENT: INITIATED</span>
+            <span>//</span>
+            <span>ACCESS GRANTED: COPIED CITY SERVER</span>
+            <span>//</span>
+            <span>Emil: SEARCHING...</span>
+            <span>//</span>
+            <span>EVERYTHING THAT LIVES IS DESIGNED TO END</span>
+        </div>
+    </div>
+
+    <footer class="statusbar">
+        <span>YoRHa_OS v1.0.0</span>
+        &nbsp;|&nbsp; state: <span id="sys-state">IDLE</span>
+        &nbsp;|&nbsp; active: <span id="active-module">NONE</span>
+        &nbsp;|&nbsp; session: <span>0.00ms</span>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
 </html>

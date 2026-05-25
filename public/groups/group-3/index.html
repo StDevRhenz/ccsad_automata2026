@@ -1,14 +1,256 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Group 3 — Placeholder</title>
-    <style>body{font-family:system-ui, sans-serif;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}</style>
-  </head>
-  <body>
-    <div>
-      <h1>Group 3 — Placeholderssssss</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group 3 Compiled Case Studies</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HOME SCREEN
+════════════════════════════════════════ -->
+<div id="screen-home" class="g3-screen active">
+  <div class="g3-home-header">
+    <h1>Group 3 Compiled Case Studies</h1>
+    <p>A collection of discrete mathematics programs</p>
+  </div>
+
+  <div class="g3-tool-grid">
+    <button class="g3-tool-btn" onclick="goTo('division')">
+      <span class="g3-tool-icon">➗</span>
+      <span class="g3-tool-name">Division Algorithm</span>
+      <span class="g3-tool-desc">Find quotient and remainder for any two positive integers</span>
+    </button>
+
+    <button class="g3-tool-btn" onclick="goTo('euclidean')">
+      <span class="g3-tool-icon">∑</span>
+      <span class="g3-tool-name">Euclidean Algorithm</span>
+      <span class="g3-tool-desc">Compute GCD and LCM step by step</span>
+    </button>
+
+    <button class="g3-tool-btn" onclick="goTo('collatz')">
+      <span class="g3-tool-icon">∞</span>
+      <span class="g3-tool-name">Collatz Sequence</span>
+      <span class="g3-tool-desc">Generate a Collatz sequence from a positive odd integer</span>
+    </button>
+
+    <button class="g3-tool-btn" onclick="goTo('palindrome')">
+      <span class="g3-tool-icon">↔</span>
+      <span class="g3-tool-name">Palindrome Checker</span>
+      <span class="g3-tool-desc">Test whether a string reads the same forwards and backwards</span>
+    </button>
+
+    <button class="g3-tool-btn wide" onclick="goTo('recursive')">
+      <span class="g3-tool-icon">🔁</span>
+      <span class="g3-tool-name">Recursive Sequences</span>
+      <span class="g3-tool-desc">Fibonacci, Lucas, and Tribonacci — compute any number of terms</span>
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     DIVISION ALGORITHM
+════════════════════════════════════════ -->
+<div id="screen-division" class="g3-screen">
+  <div class="g3-page-header">
+    <button class="g3-back-btn" onclick="goTo('home')">← Home</button>
+    <span class="g3-page-title">Division Algorithm</span>
+  </div>
+
+  <div class="g3-card">
+    <div class="g3-card-section">
+      <h3>About</h3>
+      <p>For any positive integers <em>a</em> and <em>b</em>, there exist unique integers <em>q</em> (quotient) and <em>r</em> (remainder) such that:</p>
+      <div class="g3-formula">a = b · q + r,&nbsp;&nbsp;0 ≤ r &lt; b</div>
     </div>
-  </body>
+
+    <div id="div-alert" class="g3-alert"></div>
+
+    <div class="g3-field-row">
+      <div class="g3-field">
+        <label>First integer</label>
+        <input type="number" id="div-a" placeholder="e.g. 47" min="1" />
+      </div>
+      <div class="g3-field">
+        <label>Second integer</label>
+        <input type="number" id="div-b" placeholder="e.g. 5" min="1" />
+      </div>
+      <button class="g3-btn" onclick="computeDivision()">Compute</button>
+    </div>
+
+    <div class="g3-result-label">Result</div>
+    <div class="g3-result-box empty" id="div-result">Enter two positive integers and click Compute.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     EUCLIDEAN ALGORITHM
+════════════════════════════════════════ -->
+<div id="screen-euclidean" class="g3-screen">
+  <div class="g3-page-header">
+    <button class="g3-back-btn" onclick="goTo('home')">← Home</button>
+    <span class="g3-page-title">Euclidean Algorithm</span>
+  </div>
+
+  <div class="g3-card">
+    <div class="g3-card-section">
+      <h3>About</h3>
+      <p>Repeatedly applies the division algorithm to find the GCD of two integers. The LCM follows from <span style="font-family:var(--mono);font-size:.85rem">lcm(a,b) = (a·b) / gcd(a,b)</span>.</p>
+    </div>
+
+    <div id="euc-alert" class="g3-alert"></div>
+
+    <div class="g3-field-row">
+      <div class="g3-field">
+        <label>First integer</label>
+        <input type="number" id="euc-a" placeholder="e.g. 48" min="1" />
+      </div>
+      <div class="g3-field">
+        <label>Second integer</label>
+        <input type="number" id="euc-b" placeholder="e.g. 18" min="1" />
+      </div>
+      <button class="g3-btn" onclick="computeEuclidean()">Compute</button>
+    </div>
+
+    <div class="g3-result-label">Steps &amp; Results</div>
+    <div class="g3-result-box empty" id="euc-result">Enter two positive integers and click Compute.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     COLLATZ SEQUENCE
+════════════════════════════════════════ -->
+<div id="screen-collatz" class="g3-screen">
+  <div class="g3-page-header">
+    <button class="g3-back-btn" onclick="goTo('home')">← Home</button>
+    <span class="g3-page-title">Collatz Sequence</span>
+  </div>
+
+  <div class="g3-card">
+    <div class="g3-card-section">
+      <h3>About</h3>
+      <p>Starting from a positive odd integer <em>n</em>:</p>
+      <div class="g3-formula">if even → n / 2 &nbsp;|&nbsp; if odd → 3n + 1</div>
+      <p style="margin-top:.5rem">Repeat until reaching 1. The Collatz conjecture states this always terminates.</p>
+    </div>
+
+    <div id="col-alert" class="g3-alert"></div>
+
+    <div class="g3-field-row">
+      <div class="g3-field">
+        <label>Starting value (positive odd integer)</label>
+        <input type="number" id="col-n" placeholder="e.g. 13" min="1" step="2" />
+      </div>
+      <button class="g3-btn" onclick="computeCollatz()">Compute</button>
+      <button class="g3-btn secondary" onclick="clearCollatz()">Clear</button>
+    </div>
+
+    <div class="g3-result-label">Sequence</div>
+    <div class="g3-result-box empty" id="col-result">Enter a positive odd integer and click Compute.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PALINDROME CHECKER
+════════════════════════════════════════ -->
+<div id="screen-palindrome" class="g3-screen">
+  <div class="g3-page-header">
+    <button class="g3-back-btn" onclick="goTo('home')">← Home</button>
+    <span class="g3-page-title">Palindrome Checker</span>
+  </div>
+
+  <div class="g3-card">
+    <div class="g3-card-section">
+      <h3>About</h3>
+      <p>Checks whether a string reads the same forwards and backwards. Comparison is case-insensitive and spaces are ignored.</p>
+    </div>
+
+    <div class="g3-field-row" style="flex-direction:column; align-items:stretch;">
+      <div class="g3-field">
+        <label>String to check</label>
+        <input type="text" id="pal-input" placeholder="e.g. racecar" />
+      </div>
+      <div style="display:flex; gap:.75rem; flex-wrap:wrap;">
+        <button class="g3-btn" onclick="computePalindrome()">Check</button>
+        <button class="g3-btn secondary" onclick="clearPalindrome()">Clear</button>
+      </div>
+    </div>
+
+    <div id="pal-result-area" style="display:none;">
+      <hr class="g3-divider" style="margin: .75rem 0;" />
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+        <div>
+          <div class="g3-result-label">You entered</div>
+          <code id="pal-display" style="font-family:var(--mono); font-size:.95rem; color:var(--ink);"></code>
+        </div>
+        <div>
+          <div class="g3-result-label">Length</div>
+          <span id="pal-length" style="font-family:var(--mono); font-size:.95rem; color:var(--ink);"></span>
+        </div>
+        <div>
+          <div class="g3-result-label">Palindrome?</div>
+          <span id="pal-verdict"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     RECURSIVE SEQUENCES
+════════════════════════════════════════ -->
+<div id="screen-recursive" class="g3-screen">
+  <div class="g3-page-header">
+    <button class="g3-back-btn" onclick="goTo('home')">← Home</button>
+    <span class="g3-page-title">Recursive Sequences</span>
+  </div>
+
+  <div class="g3-card">
+    <div class="g3-tabs">
+      <button class="g3-tab active" id="tab-fib" onclick="switchTab('fib')">Fibonacci</button>
+      <button class="g3-tab" id="tab-lucas" onclick="switchTab('lucas')">Lucas</button>
+      <button class="g3-tab" id="tab-trib" onclick="switchTab('trib')">Tribonacci</button>
+    </div>
+
+    <!-- Fibonacci info -->
+    <div id="info-fib" class="g3-card-section">
+      <h3>Fibonacci Numbers</h3>
+      <p>Initial values: F<sub>0</sub> = 0, F<sub>1</sub> = 1</p>
+      <div class="g3-formula">F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub> &nbsp; (n ≥ 2)</div>
+    </div>
+
+    <!-- Lucas info -->
+    <div id="info-lucas" class="g3-card-section" style="display:none;">
+      <h3>Lucas Numbers</h3>
+      <p>Initial values: L<sub>0</sub> = 2, L<sub>1</sub> = 1</p>
+      <div class="g3-formula">L<sub>n</sub> = L<sub>n-1</sub> + L<sub>n-2</sub> &nbsp; (n ≥ 2)</div>
+    </div>
+
+    <!-- Tribonacci info -->
+    <div id="info-trib" class="g3-card-section" style="display:none;">
+      <h3>Tribonacci Numbers</h3>
+      <p>Initial values: T<sub>0</sub> = 0, T<sub>1</sub> = 0, T<sub>2</sub> = 1</p>
+      <div class="g3-formula">T<sub>n</sub> = T<sub>n-1</sub> + T<sub>n-2</sub> + T<sub>n-3</sub> &nbsp; (n ≥ 3)</div>
+    </div>
+
+    <div id="rec-alert" class="g3-alert"></div>
+
+    <div class="g3-field-row">
+      <div class="g3-field">
+        <label>Number of terms</label>
+        <input type="number" id="rec-n" placeholder="e.g. 10" min="1" />
+      </div>
+      <button class="g3-btn" onclick="computeRecursive()">Compute</button>
+    </div>
+
+    <div class="g3-result-label">Sequence</div>
+    <div class="g3-result-box empty" id="rec-result">Choose a sequence type and enter the number of terms.</div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>

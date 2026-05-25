@@ -1,0 +1,323 @@
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #f5f2eb;
+  --surface:     #fdfaf5;
+  --border:      #d6cfc0;
+  --border-dark: #b8ad99;
+  --ink:         #1e1a14;
+  --ink-muted:   #6b6455;
+  --ink-faint:   #9c9284;
+  --accent:      #2f4a7c;
+  --accent-lt:   #e8edf6;
+  --accent-text: #1a2f55;
+  --red:         #8c2f2f;
+  --red-lt:      #f8eded;
+  --green:       #2a5c3a;
+  --green-lt:    #eaf2ec;
+  --serif:       'DM Serif Display', Georgia, serif;
+  --sans:        'Lato', system-ui, sans-serif;
+  --mono:        'DM Mono', 'Courier New', monospace;
+  --radius:      6px;
+  --radius-lg:   12px;
+  --shadow:      0 2px 12px rgba(30,26,20,.08);
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem;
+}
+
+/* ── SCREENS ── */
+.g3-screen { display: none; width: 100%; max-width: 660px; }
+.g3-screen.active { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* ── HOME ── */
+.g3-home-header { text-align: center; padding: 2rem 0 1rem; }
+.g3-home-header h1 {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.g3-home-header p {
+  margin-top: .6rem;
+  color: var(--ink-muted);
+  font-size: .95rem;
+  font-weight: 300;
+}
+
+.g3-tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.g3-tool-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.2rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .18s, box-shadow .18s, transform .14s;
+  box-shadow: var(--shadow);
+}
+.g3-tool-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 18px rgba(47,74,124,.13);
+  transform: translateY(-2px);
+}
+.g3-tool-btn:active { transform: translateY(0); }
+.g3-tool-btn .g3-tool-icon {
+  font-size: 1.6rem;
+  margin-bottom: .5rem;
+  display: block;
+}
+.g3-tool-btn .g3-tool-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  display: block;
+  margin-bottom: .25rem;
+}
+.g3-tool-btn .g3-tool-desc {
+  font-size: .8rem;
+  color: var(--ink-muted);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+/* Wide button for 5th item */
+.g3-tool-btn.wide { grid-column: span 2; }
+
+/* ── PAGE HEADER (sub-screens) ── */
+.g3-page-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding-top: .5rem;
+}
+.g3-back-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .35rem .75rem;
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.g3-back-btn:hover { border-color: var(--accent); color: var(--accent); }
+.g3-page-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+
+/* ── CARD ── */
+.g3-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.g3-card-section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  background: var(--bg);
+  margin-bottom: 1rem;
+}
+.g3-card-section h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  margin-bottom: .4rem;
+  color: var(--ink);
+}
+.g3-card-section p, .g3-card-section .g3-formula {
+  font-size: .88rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+.g3-formula {
+  font-family: var(--mono);
+  font-size: .85rem;
+  background: var(--accent-lt);
+  color: var(--accent-text);
+  border-radius: var(--radius);
+  padding: .4rem .7rem;
+  display: inline-block;
+  margin-top: .3rem;
+}
+
+/* ── FORM ELEMENTS ── */
+.g3-field-row {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.g3-field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  flex: 1;
+  min-width: 120px;
+}
+label {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+input[type="text"], input[type="number"], textarea {
+  font-family: var(--mono);
+  font-size: .95rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .5rem .75rem;
+  color: var(--ink);
+  width: 100%;
+  outline: none;
+  transition: border-color .15s;
+}
+input:focus, textarea:focus { border-color: var(--accent); }
+textarea { resize: vertical; min-height: 60px; font-family: var(--mono); }
+
+.g3-btn {
+  font-family: var(--sans);
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: .55rem 1.4rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .1s;
+  white-space: nowrap;
+}
+.g3-btn:hover { background: var(--accent-text); border-color: var(--accent-text); }
+.g3-btn:active { transform: scale(.98); }
+.g3-btn.secondary {
+  background: transparent;
+  color: var(--accent);
+}
+.g3-btn.secondary:hover { background: var(--accent-lt); }
+.g3-btn.danger {
+  border-color: var(--red);
+  background: var(--red);
+}
+.g3-btn.danger:hover { background: #6e2323; border-color: #6e2323; }
+
+/* ── RESULT AREA ── */
+.g3-result-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  font-family: var(--mono);
+  font-size: .88rem;
+  line-height: 1.8;
+  color: var(--ink);
+  min-height: 80px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 340px;
+  overflow-y: auto;
+}
+.g3-result-box.empty { color: var(--ink-faint); font-style: italic; font-family: var(--sans); }
+.g3-result-label {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: .4rem;
+}
+
+/* ── ALERT ── */
+.g3-alert {
+  padding: .6rem .9rem;
+  border-radius: var(--radius);
+  font-size: .85rem;
+  margin-bottom: .75rem;
+  display: none;
+}
+.g3-alert.error   { background: var(--red-lt);   color: var(--red);   border: 1px solid #e8b4b4; display: block; }
+.g3-alert.success { background: var(--green-lt); color: var(--green); border: 1px solid #aacbb3; display: block; }
+
+/* ── INPUT INVALID FLASH ── */
+.input-invalid {
+  border-color: #d64545 !important;
+  animation: flash-red 700ms ease-in-out;
+  box-shadow: 0 0 0 0 rgba(214,69,69,0);
+}
+@keyframes flash-red {
+  0%   { box-shadow: 0 0 0 0 rgba(214,69,69,0); }
+  25%  { box-shadow: 0 0 0 8px rgba(214,69,69,0.18); }
+  100% { box-shadow: 0 0 0 0 rgba(214,69,69,0); }
+}
+
+/* ── TABS (for Recursive Sequences) ── */
+.g3-tabs {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.g3-tab {
+  flex: 1;
+  padding: .5rem .5rem;
+  background: var(--bg);
+  border: none;
+  border-right: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  text-align: center;
+}
+.g3-tab:last-child { border-right: none; }
+.g3-tab.active { background: var(--accent); color: #fff; }
+.g3-tab:hover:not(.active) { background: var(--accent-lt); color: var(--accent-text); }
+
+/* ── DIVIDER ── */
+.g3-divider { border: none; border-top: 1px solid var(--border); margin: .25rem 0; }
+
+/* ── STATUS BADGE ── */
+.g3-badge {
+  display: inline-block;
+  padding: .2rem .6rem;
+  border-radius: 99px;
+  font-size: .78rem;
+  font-weight: 700;
+}
+.g3-badge.yes { background: var(--green-lt); color: var(--green); }
+.g3-badge.no  { background: var(--red-lt);   color: var(--red); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .g3-tool-grid { grid-template-columns: 1fr; }
+  .g3-tool-btn.wide { grid-column: span 1; }
+  .g3-field-row { flex-direction: column; }
+}

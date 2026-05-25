@@ -1,14 +1,69 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Group 4 — Placeholder</title>
-    <style>body{font-family:system-ui, sans-serif;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}</style>
-  </head>
-  <body>
-    <div>
-      <h1>Group 4 — Placeholdersss</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automata Lab Exercise</title>
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    
+    <div class="dashboard">
+        <header class="header">
+            <h1>Case Studies</h1>
+        </header>
+
+        <!-- Menu View -->
+        <div id="menu-view" class="menu-container">
+            <nav class="menu-list">
+                <button onclick="selectActivity('palindrome')">Palindrome Checker</button>
+                <button onclick="selectActivity('division-algorithm')">Division Algorithm</button>
+                <button onclick="selectActivity('euclidean')">Euclidean Algorithm (GCD & LCM)</button>
+                <button onclick="selectActivity('collatz')">Collatz Sequence</button>
+                
+                <div class="submenu-list">
+                    <button onclick="selectActivity('fibonacci')">Fibonacci Numbers</button>
+                    <button onclick="selectActivity('lucas')">Lucas Numbers</button>
+                    <button onclick="selectActivity('tribonacci')">Tribonacci Numbers</button>
+                </div>
+
+                <button class="exit-btn" onclick="exitSystem()">Exit System</button>
+            </nav>
+        </div>
+
+        <!-- Activity View -->
+        <div id="activity-view" class="activity-container" style="display: none;">
+            <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+            <h2 id="activity-title">Activity Name</h2>
+            
+            <div class="discussion">
+                <div id="activity-image-container" class="image-placeholder">
+                    <!-- Image will be injected here -->
+                </div>
+                <p><strong>Formula/Description:</strong></p>
+                <div id="activity-discussion" class="typing-text"></div>
+            </div>
+            
+            <div id="input-section" class="input-section">
+                <!-- Inputs will be injected here -->
+            </div>
+
+            <div id="warning-container" class="warning-container" style="display: none;">
+                <p id="error-message" class="error-message"></p>
+            </div>
+
+            <div id="results-area" class="results-area">
+                <!-- Results will be injected here -->
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Arcilla, Calica, Camacho, Carullo, Santos, Tucker III-CCASD | Automata Lab Exercise Finals</p>
+        </footer>
     </div>
-  </body>
+
+    <script src="script.js"></script>
+</body>
 </html>
