@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate Fibonacci, Lucas, and Tribonacci recursive sequence terms.">
+    <meta name="keywords" content="recursive sequences, fibonacci, lucas, tribonacci, automata activity, group two">
+    <meta name="author" content="Group Two">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Recursive Sequences | Aurora Automata">
+    <meta property="og:description" content="A clean recursive sequence generator for the Group Two automata finals activity.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/aurora.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Recursive Sequences | Aurora Automata">
+    <meta name="twitter:description" content="Generate Fibonacci, Lucas, and Tribonacci terms.">
+    <meta name="twitter:image" content="../assets/aurora.webp">
+    <title>Recursive Sequences | Aurora Automata</title>
+    <link rel="preload" href="../assets/aurora.webp" as="image">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="groupTwo-body groupTwo-activity-body" data-group-two-page="recursive" data-group-two-previous-page="collatsCase.html">
+    <div data-group-two-navbar></div>
+
+    <main class="groupTwo-activity">
+        <section class="groupTwo-activityShell" aria-labelledby="groupTwo-recursive-title">
+            <aside class="groupTwo-caseSidebar">
+                <p class="groupTwo-kicker">Case 05</p>
+                <h1 class="groupTwo-activityTitle" id="groupTwo-recursive-title">Recursive sequences</h1>
+            </aside>
+
+            <div class="groupTwo-workbench" id="groupTwo-recursive-app">
+                <div class="groupTwo-card groupTwo-recursiveCard">
+                    <div class="groupTwo-tabList" role="tablist" aria-label="Recursive sequence options">
+                        <button class="groupTwo-tabButton groupTwo-tabActive" id="groupTwo-fib-tab" type="button" role="tab" aria-selected="true" aria-controls="groupTwo-fib-panel" data-group-two-recursive-tab="fib">Fibonacci</button>
+                        <button class="groupTwo-tabButton" id="groupTwo-luc-tab" type="button" role="tab" aria-selected="false" aria-controls="groupTwo-luc-panel" data-group-two-recursive-tab="luc">Lucas</button>
+                        <button class="groupTwo-tabButton" id="groupTwo-tri-tab" type="button" role="tab" aria-selected="false" aria-controls="groupTwo-tri-panel" data-group-two-recursive-tab="tri">Tribonacci</button>
+                    </div>
+
+                    <section class="groupTwo-recursivePanel" id="groupTwo-fib-panel" role="tabpanel" aria-labelledby="groupTwo-fib-tab" data-group-two-recursive-panel="fib">
+                        <img class="groupTwo-sequenceImage" src="../assets/Fibonacci.webp" alt="Fibonacci sequence definition">
+                        <form class="groupTwo-form" data-group-two-recursive-form="fib">
+                            <label class="groupTwo-field" for="groupTwo-fib-input">
+                                <span class="groupTwo-label">Number of terms</span>
+                                <span class="groupTwo-fieldHint">Minimum of 3 terms</span>
+                                <input class="groupTwo-input" id="groupTwo-fib-input" type="number" min="3" placeholder="8" required>
+                            </label>
+                            <div class="groupTwo-actions">
+                                <button class="groupTwo-button groupTwo-buttonPrimary" type="submit">Compute</button>
+                                <button class="groupTwo-button groupTwo-buttonSecondary" type="button" data-group-two-recursive-reset="fib">Reset</button>
+                            </div>
+                        </form>
+                        <output class="groupTwo-outputBox" id="groupTwo-fib-output" data-group-two-scrollable>The result will appear here.</output>
+                    </section>
+
+                    <section class="groupTwo-recursivePanel" id="groupTwo-luc-panel" role="tabpanel" aria-labelledby="groupTwo-luc-tab" data-group-two-recursive-panel="luc" hidden>
+                        <img class="groupTwo-sequenceImage" src="../assets/lucas.webp" alt="Lucas sequence definition" loading="lazy">
+                        <form class="groupTwo-form" data-group-two-recursive-form="luc">
+                            <label class="groupTwo-field" for="groupTwo-luc-input">
+                                <span class="groupTwo-label">Number of terms</span>
+                                <span class="groupTwo-fieldHint">Minimum of 3 terms</span>
+                                <input class="groupTwo-input" id="groupTwo-luc-input" type="number" min="3" placeholder="8" required>
+                            </label>
+                            <div class="groupTwo-actions">
+                                <button class="groupTwo-button groupTwo-buttonPrimary" type="submit">Compute</button>
+                                <button class="groupTwo-button groupTwo-buttonSecondary" type="button" data-group-two-recursive-reset="luc">Reset</button>
+                            </div>
+                        </form>
+                        <output class="groupTwo-outputBox" id="groupTwo-luc-output" data-group-two-scrollable>The result will appear here.</output>
+                    </section>
+
+                    <section class="groupTwo-recursivePanel" id="groupTwo-tri-panel" role="tabpanel" aria-labelledby="groupTwo-tri-tab" data-group-two-recursive-panel="tri" hidden>
+                        <img class="groupTwo-sequenceImage" src="../assets/tribonacci.webp" alt="Tribonacci sequence definition" loading="lazy">
+                        <form class="groupTwo-form" data-group-two-recursive-form="tri">
+                            <label class="groupTwo-field" for="groupTwo-tri-input">
+                                <span class="groupTwo-label">Number of terms</span>
+                                <span class="groupTwo-fieldHint">Minimum of 4 terms</span>
+                                <input class="groupTwo-input" id="groupTwo-tri-input" type="number" min="4" placeholder="8" required>
+                            </label>
+                            <div class="groupTwo-actions">
+                                <button class="groupTwo-button groupTwo-buttonPrimary" type="submit">Compute</button>
+                                <button class="groupTwo-button groupTwo-buttonSecondary" type="button" data-group-two-recursive-reset="tri">Reset</button>
+                            </div>
+                        </form>
+                        <output class="groupTwo-outputBox" id="groupTwo-tri-output" data-group-two-scrollable>The result will appear here.</output>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../main.js"></script>
+</body>
+</html>

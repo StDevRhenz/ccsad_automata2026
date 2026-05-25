@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solve positive integer division with quotient, remainder, dividend, and divisor details.">
+    <meta name="keywords" content="division algorithm, quotient, remainder, automata activity, group two">
+    <meta name="author" content="Group Two">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Division Algorithm | Aurora Automata">
+    <meta property="og:description" content="A clean division algorithm solver for the Group Two automata finals activity.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/aurora.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Division Algorithm | Aurora Automata">
+    <meta name="twitter:description" content="Solve quotient and remainder from two positive integers.">
+    <meta name="twitter:image" content="../assets/aurora.webp">
+    <title>Division Algorithm | Aurora Automata</title>
+    <link rel="preload" href="../assets/aurora.webp" as="image">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="groupTwo-body groupTwo-activity-body" data-group-two-page="division" data-group-two-previous-page="palindromeCase.html" data-group-two-next-page="euclideanCase.html">
+    <div data-group-two-navbar></div>
+
+    <main class="groupTwo-activity">
+        <section class="groupTwo-activityShell" aria-labelledby="groupTwo-division-title">
+            <aside class="groupTwo-caseSidebar">
+                <p class="groupTwo-kicker">Case 02</p>
+                <h1 class="groupTwo-activityTitle" id="groupTwo-division-title">Division algorithm</h1>
+            </aside>
+
+            <div class="groupTwo-workbench">
+                <div class="groupTwo-card">
+                    <form class="groupTwo-form" id="groupTwo-division-form">
+                        <div class="groupTwo-fieldGrid">
+                            <label class="groupTwo-field" for="groupTwo-division-first-number">
+                                <span class="groupTwo-label">First integer</span>
+                                <span class="groupTwo-fieldHint">Positive whole number</span>
+                                <input class="groupTwo-input" type="number" id="groupTwo-division-first-number" min="1" placeholder="21" required>
+                            </label>
+                            <label class="groupTwo-field" for="groupTwo-division-second-number">
+                                <span class="groupTwo-label">Second integer</span>
+                                <span class="groupTwo-fieldHint">Positive whole number</span>
+                                <input class="groupTwo-input" type="number" id="groupTwo-division-second-number" min="1" placeholder="4" required>
+                            </label>
+                        </div>
+                        <button class="groupTwo-button groupTwo-buttonPrimary" type="submit">Solve</button>
+                        <p class="groupTwo-message" id="groupTwo-division-message" aria-live="polite" hidden></p>
+                    </form>
+
+                    <section class="groupTwo-resultPanel" id="groupTwo-division-results" aria-live="polite">
+                        <output class="groupTwo-equation" id="groupTwo-division-solution">Enter two values to see the equation.</output>
+                        <div class="groupTwo-resultGrid">
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Dividend</span>
+                                <output class="groupTwo-output" id="groupTwo-division-dividend">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Divisor</span>
+                                <output class="groupTwo-output" id="groupTwo-division-divisor">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Quotient</span>
+                                <output class="groupTwo-output" id="groupTwo-division-quotient">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Remainder</span>
+                                <output class="groupTwo-output" id="groupTwo-division-remainder">--</output>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../main.js"></script>
+</body>
+</html>

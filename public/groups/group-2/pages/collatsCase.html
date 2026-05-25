@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate a Collatz sequence from a positive odd integer until it reaches one.">
+    <meta name="keywords" content="collatz sequence, positive odd integer, automata activity, group two">
+    <meta name="author" content="Group Two">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Collatz Sequence | Aurora Automata">
+    <meta property="og:description" content="A clean Collatz sequence generator for the Group Two automata finals activity.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/aurora.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Collatz Sequence | Aurora Automata">
+    <meta name="twitter:description" content="Generate Collatz terms from a positive odd integer.">
+    <meta name="twitter:image" content="../assets/aurora.webp">
+    <title>Collatz Sequence | Aurora Automata</title>
+    <link rel="preload" href="../assets/aurora.webp" as="image">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="groupTwo-body groupTwo-activity-body" data-group-two-page="collatz" data-group-two-previous-page="euclideanCase.html" data-group-two-next-page="RecursiveCase.html">
+    <div data-group-two-navbar></div>
+
+    <main class="groupTwo-activity">
+        <section class="groupTwo-activityShell" aria-labelledby="groupTwo-collatz-title">
+            <aside class="groupTwo-caseSidebar">
+                <p class="groupTwo-kicker">Case 04</p>
+                <h1 class="groupTwo-activityTitle" id="groupTwo-collatz-title">Collatz sequence</h1>
+            </aside>
+
+            <div class="groupTwo-workbench">
+                <div class="groupTwo-card">
+                    <form class="groupTwo-form" id="groupTwo-collatz-form">
+                        <label class="groupTwo-field" for="groupTwo-collatz-number">
+                            <span class="groupTwo-label">Positive odd integer</span>
+                            <span class="groupTwo-fieldHint">Examples: 7, 9, 15</span>
+                            <input class="groupTwo-input" type="text" id="groupTwo-collatz-number" placeholder="9" inputmode="numeric" autocomplete="off" required>
+                        </label>
+                        <button class="groupTwo-button groupTwo-buttonPrimary" type="submit">Generate</button>
+                        <p class="groupTwo-message" id="groupTwo-collatz-message" aria-live="polite" hidden></p>
+                    </form>
+
+                    <section class="groupTwo-resultPanel" id="groupTwo-collatz-results" aria-live="polite">
+                        <output class="groupTwo-outputBox" id="groupTwo-collatz-sequence" data-group-two-scrollable>The sequence will appear here.</output>
+                        <div class="groupTwo-resultGrid">
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Terms</span>
+                                <output class="groupTwo-output" id="groupTwo-collatz-length">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Start</span>
+                                <output class="groupTwo-output" id="groupTwo-collatz-start">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">End</span>
+                                <output class="groupTwo-output" id="groupTwo-collatz-end">--</output>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../main.js"></script>
+</body>
+</html>

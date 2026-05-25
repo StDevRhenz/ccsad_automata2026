@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Use the Aurora Automata palindrome checker to test whether a word or phrase reads the same forward and backward.">
+    <meta name="keywords" content="palindrome checker, automata activity, JavaScript palindrome, group two">
+    <meta name="author" content="Group Two">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Palindrome Checker | Aurora Automata">
+    <meta property="og:description" content="A clean palindrome checker for the Group Two automata finals activity.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/aurora.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Palindrome Checker | Aurora Automata">
+    <meta name="twitter:description" content="Test a word or phrase in a polished palindrome checker interface.">
+    <meta name="twitter:image" content="../assets/aurora.webp">
+    <title>Palindrome Checker | Aurora Automata</title>
+    <link rel="preload" href="../assets/aurora.webp" as="image">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="groupTwo-body groupTwo-activity-body" data-group-two-page="palindrome" data-group-two-previous-page="../index.html" data-group-two-next-page="divisionCase.html">
+    <div data-group-two-navbar></div>
+
+    <main class="groupTwo-activity">
+        <section class="groupTwo-activityShell" aria-labelledby="groupTwo-palindrome-title">
+            <aside class="groupTwo-caseSidebar">
+                <p class="groupTwo-kicker">Case 01</p>
+                <h1 class="groupTwo-activityTitle" id="groupTwo-palindrome-title">Palindrome checker</h1>
+            </aside>
+
+            <div class="groupTwo-workbench">
+                <div class="groupTwo-card">
+                    <form class="groupTwo-form" id="groupTwo-palindrome-form">
+                        <div class="groupTwo-field">
+                            <label class="groupTwo-label" for="groupTwo-palindrome-input">Word or phrase</label>
+                            <span class="groupTwo-fieldHint">Spaces, punctuation, and capitalization are ignored.</span>
+                        </div>
+                        <div class="groupTwo-inputRow">
+                            <input class="groupTwo-input" type="text" id="groupTwo-palindrome-input" name="groupTwo-palindrome-input" placeholder="Racecar" autocomplete="off" required>
+                            <button class="groupTwo-button groupTwo-buttonPrimary" type="submit">Check</button>
+                        </div>
+                        <p class="groupTwo-message" id="groupTwo-palindrome-message" aria-live="polite" hidden></p>
+                    </form>
+
+                    <section class="groupTwo-resultGrid" aria-live="polite" aria-label="Palindrome results">
+                        <article class="groupTwo-resultItem">
+                            <span class="groupTwo-resultLabel">Cleaned text</span>
+                            <output class="groupTwo-output groupTwo-outputSmall" id="groupTwo-palindrome-string">Ready</output>
+                        </article>
+                        <article class="groupTwo-resultItem">
+                            <span class="groupTwo-resultLabel">Palindrome</span>
+                            <output class="groupTwo-output" id="groupTwo-palindrome-result">--</output>
+                        </article>
+                        <article class="groupTwo-resultItem">
+                            <span class="groupTwo-resultLabel">Length</span>
+                            <output class="groupTwo-output" id="groupTwo-palindrome-length">0</output>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../main.js"></script>
+</body>
+</html>

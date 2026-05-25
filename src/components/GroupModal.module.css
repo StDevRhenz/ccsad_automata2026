@@ -1,0 +1,90 @@
+.shell {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overscroll-behavior: none;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.shellOpen {
+  animation: shellEnter 250ms ease forwards;
+}
+
+.shellClose {
+  animation: shellExit 250ms ease forwards;
+}
+
+.header {
+  height: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: #111827;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: #111827;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.body iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  pointer-events: all;
+  overflow: hidden;
+}
+
+@keyframes shellEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shellExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solve the greatest common divisor and least common multiple with the Euclidean algorithm.">
+    <meta name="keywords" content="euclidean algorithm, gcd, lcm, automata activity, group two">
+    <meta name="author" content="Group Two">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Euclidean Algorithm | Aurora Automata">
+    <meta property="og:description" content="A clean Euclidean algorithm solver for the Group Two automata finals activity.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/aurora.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Euclidean Algorithm | Aurora Automata">
+    <meta name="twitter:description" content="Calculate GCD and LCM from two positive integers.">
+    <meta name="twitter:image" content="../assets/aurora.webp">
+    <title>Euclidean Algorithm | Aurora Automata</title>
+    <link rel="preload" href="../assets/aurora.webp" as="image">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="groupTwo-body groupTwo-activity-body" data-group-two-page="euclidean" data-group-two-previous-page="divisionCase.html" data-group-two-next-page="collatsCase.html">
+    <div data-group-two-navbar></div>
+
+    <main class="groupTwo-activity">
+        <section class="groupTwo-activityShell" aria-labelledby="groupTwo-euclidean-title">
+            <aside class="groupTwo-caseSidebar">
+                <p class="groupTwo-kicker">Case 03</p>
+                <h1 class="groupTwo-activityTitle" id="groupTwo-euclidean-title">Euclidean algorithm</h1>
+            </aside>
+
+            <div class="groupTwo-workbench">
+                <div class="groupTwo-card">
+                    <form class="groupTwo-form" id="groupTwo-euclidean-form">
+                        <div class="groupTwo-fieldGrid">
+                            <label class="groupTwo-field" for="groupTwo-euclidean-first-number">
+                                <span class="groupTwo-label">First integer</span>
+                                <span class="groupTwo-fieldHint">Positive whole number</span>
+                                <input class="groupTwo-input" type="number" id="groupTwo-euclidean-first-number" min="1" placeholder="48" required>
+                            </label>
+                            <label class="groupTwo-field" for="groupTwo-euclidean-second-number">
+                                <span class="groupTwo-label">Second integer</span>
+                                <span class="groupTwo-fieldHint">Positive whole number</span>
+                                <input class="groupTwo-input" type="number" id="groupTwo-euclidean-second-number" min="1" placeholder="18" required>
+                            </label>
+                        </div>
+                        <button class="groupTwo-button groupTwo-buttonPrimary" type="submit">Solve</button>
+                        <p class="groupTwo-message" id="groupTwo-euclidean-message" aria-live="polite" hidden></p>
+                    </form>
+
+                    <section class="groupTwo-resultPanel" id="groupTwo-euclidean-results" aria-live="polite">
+                        <ol class="groupTwo-stepList" id="groupTwo-euclidean-steps" data-group-two-scrollable>
+                            <li>Steps will appear after solving.</li>
+                        </ol>
+                        <div class="groupTwo-resultGrid">
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Integer A</span>
+                                <output class="groupTwo-output" id="groupTwo-euclidean-first-result">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">Integer B</span>
+                                <output class="groupTwo-output" id="groupTwo-euclidean-second-result">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">GCD</span>
+                                <output class="groupTwo-output" id="groupTwo-euclidean-gcd">--</output>
+                            </article>
+                            <article class="groupTwo-resultItem">
+                                <span class="groupTwo-resultLabel">LCM</span>
+                                <output class="groupTwo-output" id="groupTwo-euclidean-lcm">--</output>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../main.js"></script>
+</body>
+</html>

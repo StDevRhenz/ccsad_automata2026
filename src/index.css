@@ -1,0 +1,98 @@
+
+:root {
+  --bg: #f9fafb; /* page off-white */
+  --surface: #ffffff; /* card/surface */
+  --surface-2: #ffffff;
+  --border: #e5e7eb; /* light gray */
+  --text: #111827; /* dark heading text */
+  --muted: #6b7280; /* muted text */
+  --accent: #22c55e; /* emerald green */
+  --accent-2: #16a34a;
+  --radius: 12px;
+  --font: 'Inter', system-ui, sans-serif;
+  --ease-short: 200ms;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+html,body,#root { height: 100%; }
+html, body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 20px 40px; /* account for fixed navbar */
+}
+
+.page-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  color: var(--accent-2);
+}
+.page-subtitle { text-align:center; color:var(--muted); margin:0 0 28px }
+
+/* Hero */
+.hero { text-align:center; margin-bottom:28px }
+.hero .line { display:block; opacity:0; transform:translateY(8px); }
+.hero .line.visible { animation: fadeUp 420ms var(--ease-short) forwards; }
+.hero .meta { color:var(--muted); font-size:14px; letter-spacing:0.08em }
+.hero .title { font-size:56px; margin:8px 0 6px; color: var(--text) }
+.hero .prof { color:var(--muted); font-size:14px }
+
+/* Section header */
+.section-header { text-align:center; color:var(--muted); letter-spacing:0.12em; margin:34px 0 8px }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+@keyframes fadeUp {
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Card fade-in */
+.card-hidden { opacity:0; transform: translateY(14px); transition: all var(--ease-short) ease; }
+.card-visible { opacity:1; transform: translateY(0); }
+
