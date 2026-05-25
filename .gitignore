@@ -18,4 +18,3 @@ coverage/
 /.parcel-cache
 /.turbo
 /.next
-public/groups/**/index.html

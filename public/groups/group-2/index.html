@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aurora Automata is a minimalist finals activity workspace for palindrome, division, Euclidean, Collatz, and recursive sequence cases.">
+    <meta name="keywords" content="automata, palindrome checker, division algorithm, euclidean algorithm, collatz sequence, recursive sequences">
+    <meta name="author" content="Group Two">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Aurora Automata | Finals Activity">
+    <meta property="og:description" content="A modern activity hub for the Group Two automata finals activities.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/aurora.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aurora Automata | Finals Activity">
+    <meta name="twitter:description" content="A polished activity hub for Group Two automata cases.">
+    <meta name="twitter:image" content="assets/aurora.webp">
+    <title>Aurora Automata | Group 2 Finals Activity</title>
+    <link rel="preload" href="assets/aurora.webp" as="image">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="main.js"></script>
+</head>
+<body class="groupTwo-body groupTwo-landing-body" data-group-two-page="landing" data-group-two-next-page="pages/palindromeCase.html">
+    <div data-group-two-navbar></div>
+
+    <main class="groupTwo-landing">
+        <section class="groupTwo-hero" aria-labelledby="groupTwo-hero-title">
+            <div class="groupTwo-copy">
+                <p class="groupTwo-eyebrow">Group 2 - AURA</p>
+                <h1 class="groupTwo-title" id="groupTwo-hero-title">Automata Theory Final</h1>
+                <p class="groupTwo-description">
+                    A calm, focused workspace for exploring formal language activities through simple inputs, readable outputs, and predictable navigation.
+                </p>
+                <div class="groupTwo-actions">
+                    <a class="groupTwo-button groupTwo-buttonPrimary" href="pages/palindromeCase.html" data-group-two-page-link>Start first case</a>
+                    <a class="groupTwo-button groupTwo-buttonSecondary" href="#groupTwo-case-library">View cases</a>
+                </div>
+            </div>
+
+            <figure class="groupTwo-heroVisual" aria-label="Aurora mascot preview">
+                <img class="groupTwo-heroImage" src="assets/aurora.webp" alt="Pixel art Aurora mascot for the automata activity" width="520" height="520">
+            </figure>
+        </section>
+
+        <section class="groupTwo-section" id="groupTwo-case-library" aria-labelledby="groupTwo-case-library-title">
+            <div class="groupTwo-sectionHeading">
+                <p class="groupTwo-kicker">Case library</p>
+                <h2 id="groupTwo-case-library-title">Choose the activity you want to solve.</h2>
+                <p>Each module keeps the same interaction pattern: enter values, submit once, and review the result in a structured panel.</p>
+            </div>
+
+            <div class="groupTwo-moduleList">
+                <a class="groupTwo-moduleCard" href="pages/palindromeCase.html" data-group-two-page-link>
+                    <span class="groupTwo-moduleNumber">01</span>
+                    <span class="groupTwo-moduleName">Palindrome checker</span>
+                    <span class="groupTwo-moduleText">Normalize text and verify symmetry.</span>
+                </a>
+                <a class="groupTwo-moduleCard" href="pages/divisionCase.html" data-group-two-page-link>
+                    <span class="groupTwo-moduleNumber">02</span>
+                    <span class="groupTwo-moduleName">Division algorithm</span>
+                    <span class="groupTwo-moduleText">Find quotient and remainder.</span>
+                </a>
+                <a class="groupTwo-moduleCard" href="pages/euclideanCase.html" data-group-two-page-link>
+                    <span class="groupTwo-moduleNumber">03</span>
+                    <span class="groupTwo-moduleName">Euclidean algorithm</span>
+                    <span class="groupTwo-moduleText">Resolve GCD, LCM, and steps.</span>
+                </a>
+                <a class="groupTwo-moduleCard" href="pages/collatsCase.html" data-group-two-page-link>
+                    <span class="groupTwo-moduleNumber">04</span>
+                    <span class="groupTwo-moduleName">Collatz sequence</span>
+                    <span class="groupTwo-moduleText">Generate the stopping path.</span>
+                </a>
+                <a class="groupTwo-moduleCard" href="pages/RecursiveCase.html" data-group-two-page-link>
+                    <span class="groupTwo-moduleNumber">05</span>
+                    <span class="groupTwo-moduleName">Recursive sequences</span>
+                    <span class="groupTwo-moduleText">Build Fibonacci, Lucas, and Tribonacci terms.</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="groupTwo-section groupTwo-onboarding" aria-labelledby="groupTwo-onboarding-title">
+            <div class="groupTwo-sectionHeading">
+                <p class="groupTwo-kicker">Flow</p>
+                <h2 id="groupTwo-onboarding-title">A quiet path from input to result.</h2>
+            </div>
+
+            <div class="groupTwo-onboardingGrid">
+                <article class="groupTwo-stepCard">
+                    <span>1</span>
+                    <h3>Pick a case</h3>
+                    <p>Named navigation keeps every activity visible from the first screen.</p>
+                </article>
+                <article class="groupTwo-stepCard">
+                    <span>2</span>
+                    <h3>Enter values</h3>
+                    <p>Forms use plain labels, helpful examples, and clear validation messages.</p>
+                </article>
+                <article class="groupTwo-stepCard">
+                    <span>3</span>
+                    <h3>Read the answersssss</h3>
+                    <p>Outputs are grouped into short, scannable result fields.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

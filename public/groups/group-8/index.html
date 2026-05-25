@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithms & Recursive Sequences — Group 08</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="group08-app">
+
+    <div class="group08-bg-canvas">
+      <div class="group08-blob group08-blob--one"></div>
+      <div class="group08-blob group08-blob--two"></div>
+      <div class="group08-blob group08-blob--three"></div>
+      <div class="group08-noise-overlay"></div>
+    </div>
+
+    <div id="screen-main" class="group08-screen group08-screen--active">
+      <div class="group08-main-layout">
+        <div class="group08-main-header">
+          <div class="group08-lab-eyebrow">Automata Theory — Case Study</div>
+          <h1 class="group08-main-title">Algorithms &<br><span>Sequences</span></h1>
+
+        </div>
+        <div class="group08-menu-grid">
+          <div class="group08-menu-card" role="button" tabindex="0" data-target="division"
+            aria-label="Division Algorithm">
+            <div class="group08-menu-card-index">01</div>
+            <div class="group08-menu-card-icon"><i data-lucide="divide" width="22" height="22" aria-hidden="true"></i>
+            </div>
+            <div class="group08-menu-card-label">Division Algorithm</div>
+            <div class="group08-menu-card-sub">m = n·q + r</div>
+          </div>
+          <div class="group08-menu-card" role="button" tabindex="0" data-target="euclidean"
+            aria-label="Euclidean Algorithm">
+            <div class="group08-menu-card-index">02</div>
+            <div class="group08-menu-card-icon"><i data-lucide="git-merge" width="22" height="22"
+                aria-hidden="true"></i></div>
+            <div class="group08-menu-card-label">Euclidean Algorithm</div>
+            <div class="group08-menu-card-sub">gcd(a, b) → LCM</div>
+          </div>
+          <div class="group08-menu-card" role="button" tabindex="0" data-target="collatz" aria-label="Collatz Sequence">
+            <div class="group08-menu-card-index">03</div>
+            <div class="group08-menu-card-icon"><i data-lucide="repeat" width="22" height="22" aria-hidden="true"></i>
+            </div>
+            <div class="group08-menu-card-label">Collatz Sequence</div>
+            <div class="group08-menu-card-sub">n → 3n+1 or n/2</div>
+          </div>
+          <div class="group08-menu-card" role="button" tabindex="0" data-target="fibonacci"
+            aria-label="Fibonacci Numbers">
+            <div class="group08-menu-card-index">04</div>
+            <div class="group08-menu-card-icon"><i data-lucide="git-branch" width="22" height="22"
+                aria-hidden="true"></i></div>
+            <div class="group08-menu-card-label">Fibonacci Numbers</div>
+            <div class="group08-menu-card-sub">f(n) = f(n-1) + f(n-2)</div>
+          </div>
+          <div class="group08-menu-card" role="button" tabindex="0" data-target="lucas" aria-label="Lucas Numbers">
+            <div class="group08-menu-card-index">05</div>
+            <div class="group08-menu-card-icon"><i data-lucide="activity" width="22" height="22" aria-hidden="true"></i>
+            </div>
+            <div class="group08-menu-card-label">Lucas Numbers</div>
+            <div class="group08-menu-card-sub">L(n) = L(n-1) + L(n-2)</div>
+          </div>
+          <div class="group08-menu-card" role="button" tabindex="0" data-target="tribonacci"
+            aria-label="Tribonacci Numbers">
+            <div class="group08-menu-card-index">06</div>
+            <div class="group08-menu-card-icon"><i data-lucide="triangle" width="22" height="22" aria-hidden="true"></i>
+            </div>
+            <div class="group08-menu-card-label">Tribonacci Numbers</div>
+            <div class="group08-menu-card-sub">T(n) = T(n-1) + T(n-2) + T(n-3)</div>
+          </div>
+          <div class="group08-menu-card group08-menu-card--exit" role="button" tabindex="0" data-target="exit"
+            aria-label="Exit application">
+            <div class="group08-menu-card-index">07</div>
+            <div class="group08-menu-card-icon"><i data-lucide="log-out" width="22" height="22" aria-hidden="true"></i>
+            </div>
+            <div class="group08-menu-card-label">Exit</div>
+            <div class="group08-menu-card-sub">Close the application</div>
+          </div>
+        </div>
+      </div>
+      <div class="group08-footer-names">BANHAO &nbsp;&bull;&nbsp; GARCIA &nbsp;&bull;&nbsp; LLAMOSO &nbsp;&bull;&nbsp; MANALON</div>
+    </div>
+
+    <div id="screen-fibonacci" class="group08-screen">
+      <div class="group08-sub-layout">
+        <div class="group08-sub-header">
+          <div class="group08-sub-title-block">
+            <div class="group08-sub-eyebrow">Sequence 04</div>
+            <h2 class="group08-sub-title">Fibonacci Numbers</h2>
+          </div>
+          <button class="group08-sub-back" aria-label="Return to main menu">
+            <i data-lucide="arrow-left" width="14" height="14" aria-hidden="true"></i>
+            Main Menu
+          </button>
+        </div>
+
+        <div class="group08-glass-panel">
+          <div class="group08-discussion-panel">
+            <div class="group08-discussion-title">
+              <i data-lucide="book-open" width="14" height="14" aria-hidden="true"></i>
+              About This Sequence
+            </div>
+            <p class="group08-discussion-body">
+              The Fibonacci sequence is a famous mathematical pattern where each term is the sum of the two preceding
+              ones. Starting with 0 and 1, it models natural growth and relates closely to the Golden Ratio (φ). In
+              automata theory, it frequently appears in the analysis of self-referential grammars and recursive state
+              machines.
+            </p>
+            <div class="group08-formula-chip">
+              <i data-lucide="function-square" width="12" height="12" aria-hidden="true"></i>
+              F(0) = 0, F(1) = 1, F(n) = F(n−1) + F(n−2)
+            </div>
+          </div>
+        </div>
+
+        <div class="group08-right-column">
+          <div class="group08-glass-panel">
+            <div class="group08-input-zone">
+              <div class="group08-input-zone-title">
+                <i data-lucide="sliders-horizontal" width="14" height="14" aria-hidden="true"></i>
+                Compute Terms
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="fib-input">Number of terms (n &gt; 2)</label>
+                <input type="number" id="fib-input" class="group08-input-field" placeholder="e.g. 5" min="3"
+                  aria-describedby="fib-error">
+              </div>
+              <div id="fib-error" class="group08-error-msg" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" width="13" height="13" aria-hidden="true"></i>
+                <span id="fib-error-text"></span>
+              </div>
+              <div class="group08-action-row">
+                <button class="group08-compute-btn" id="fib-compute-btn" aria-label="Compute Fibonacci sequence">
+                  <i data-lucide="play-circle" width="16" height="16" aria-hidden="true"></i>
+                  Compute
+                </button>
+                <button class="group08-refresh-btn" id="fib-refresh-btn" aria-label="Refresh"><i data-lucide="rotate-cw"
+                    width="16" height="16" aria-hidden="true"></i> Refresh</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="group08-glass-panel">
+            <div class="group08-result-zone" id="fib-result-zone" aria-live="polite">
+              <div class="group08-result-label">
+                <i data-lucide="list-ordered" width="14" height="14" aria-hidden="true"></i>
+                Output
+                <span class="group08-result-meta" id="fib-result-meta"></span>
+              </div>
+              <div class="group08-divider"></div>
+              <div class="group08-result-list" id="fib-result-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-lucas" class="group08-screen">
+      <div class="group08-sub-layout">
+        <div class="group08-sub-header">
+          <div class="group08-sub-title-block">
+            <div class="group08-sub-eyebrow">Sequence 05</div>
+            <h2 class="group08-sub-title">Lucas Numbers</h2>
+          </div>
+          <button class="group08-sub-back" aria-label="Return to main menu">
+            <i data-lucide="arrow-left" width="14" height="14" aria-hidden="true"></i>
+            Main Menu
+          </button>
+        </div>
+
+        <div class="group08-glass-panel">
+          <div class="group08-discussion-panel">
+            <div class="group08-discussion-title">
+              <i data-lucide="book-open" width="14" height="14" aria-hidden="true"></i>
+              About This Sequence
+            </div>
+            <p class="group08-discussion-body">
+              The Lucas sequence shares the same recursive addition rule as the Fibonacci sequence but begins with
+              different seeds: 2 and 1. Despite this difference, it exhibits the same asymptotic growth and converges to
+              the Golden Ratio. In computer science, Lucas numbers are vital for prime testing algorithms and
+              constructing pseudoprimes.
+            </p>
+            <div class="group08-formula-chip">
+              <i data-lucide="function-square" width="12" height="12" aria-hidden="true"></i>
+              L(0) = 2, L(1) = 1, L(n) = L(n−1) + L(n−2)
+            </div>
+          </div>
+        </div>
+
+        <div class="group08-right-column">
+          <div class="group08-glass-panel">
+            <div class="group08-input-zone">
+              <div class="group08-input-zone-title">
+                <i data-lucide="sliders-horizontal" width="14" height="14" aria-hidden="true"></i>
+                Compute Terms
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="lucas-input">Number of terms (n &gt; 2)</label>
+                <input type="number" id="lucas-input" class="group08-input-field" placeholder="e.g. 5" min="3"
+                  aria-describedby="lucas-error">
+              </div>
+              <div id="lucas-error" class="group08-error-msg" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" width="13" height="13" aria-hidden="true"></i>
+                <span id="lucas-error-text"></span>
+              </div>
+              <div class="group08-action-row">
+                <button class="group08-compute-btn" id="lucas-compute-btn" aria-label="Compute Lucas sequence">
+                  <i data-lucide="play-circle" width="16" height="16" aria-hidden="true"></i>
+                  Compute
+                </button>
+                <button class="group08-refresh-btn" id="lucas-refresh-btn" aria-label="Refresh"><i
+                    data-lucide="rotate-cw" width="16" height="16" aria-hidden="true"></i> Refresh</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="group08-glass-panel">
+            <div class="group08-result-zone" id="lucas-result-zone" aria-live="polite">
+              <div class="group08-result-label">
+                <i data-lucide="list-ordered" width="14" height="14" aria-hidden="true"></i>
+                Output
+                <span class="group08-result-meta" id="lucas-result-meta"></span>
+              </div>
+              <div class="group08-divider"></div>
+              <div class="group08-result-list" id="lucas-result-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-tribonacci" class="group08-screen">
+      <div class="group08-sub-layout">
+        <div class="group08-sub-header">
+          <div class="group08-sub-title-block">
+            <div class="group08-sub-eyebrow">Sequence 06</div>
+            <h2 class="group08-sub-title">Tribonacci Numbers</h2>
+          </div>
+          <button class="group08-sub-back" aria-label="Return to main menu">
+            <i data-lucide="arrow-left" width="14" height="14" aria-hidden="true"></i>
+            Main Menu
+          </button>
+        </div>
+
+        <div class="group08-glass-panel">
+          <div class="group08-discussion-panel">
+            <div class="group08-discussion-title">
+              <i data-lucide="book-open" width="14" height="14" aria-hidden="true"></i>
+              About This Sequence
+            </div>
+            <p class="group08-discussion-body">
+              The Tribonacci sequence extends the standard Fibonacci rule by summing the three preceding terms instead
+              of two. Beginning with the seeds 0, 0, and 1, it grows at a faster rate and converges to the Tribonacci
+              constant (τ ≈ 1.839). It finds practical application in computational biology for modeling three-way
+              branching processes.
+            </p>
+            <div class="group08-formula-chip">
+              <i data-lucide="function-square" width="12" height="12" aria-hidden="true"></i>
+              T(0)=0, T(1)=0, T(2)=1, T(n) = T(n−1) + T(n−2) + T(n−3)
+            </div>
+          </div>
+        </div>
+
+        <div class="group08-right-column">
+          <div class="group08-glass-panel">
+            <div class="group08-input-zone">
+              <div class="group08-input-zone-title">
+                <i data-lucide="sliders-horizontal" width="14" height="14" aria-hidden="true"></i>
+                Compute Terms
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="trib-input">Number of terms (n &gt; 3)</label>
+                <input type="number" id="trib-input" class="group08-input-field" placeholder="e.g. 10" min="4"
+                  aria-describedby="trib-error">
+              </div>
+              <div id="trib-error" class="group08-error-msg" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" width="13" height="13" aria-hidden="true"></i>
+                <span id="trib-error-text"></span>
+              </div>
+              <div class="group08-action-row">
+                <button class="group08-compute-btn" id="trib-compute-btn" aria-label="Compute Tribonacci sequence">
+                  <i data-lucide="play-circle" width="16" height="16" aria-hidden="true"></i>
+                  Compute
+                </button>
+                <button class="group08-refresh-btn" id="trib-refresh-btn" aria-label="Refresh"><i
+                    data-lucide="rotate-cw" width="16" height="16" aria-hidden="true"></i> Refresh</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="group08-glass-panel">
+            <div class="group08-result-zone" id="trib-result-zone" aria-live="polite">
+              <div class="group08-result-label">
+                <i data-lucide="list-ordered" width="14" height="14" aria-hidden="true"></i>
+                Output
+                <span class="group08-result-meta" id="trib-result-meta"></span>
+              </div>
+              <div class="group08-divider"></div>
+              <div class="group08-result-list" id="trib-result-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-division" class="group08-screen">
+      <div class="group08-sub-layout">
+        <div class="group08-sub-header">
+          <div class="group08-sub-title-block">
+            <div class="group08-sub-eyebrow">Algorithm 01</div>
+            <h2 class="group08-sub-title">Division Algorithm</h2>
+          </div>
+          <button class="group08-sub-back" aria-label="Return to main menu">
+            <i data-lucide="arrow-left" width="14" height="14" aria-hidden="true"></i>
+            Main Menu
+          </button>
+        </div>
+        <div class="group08-glass-panel">
+          <div class="group08-discussion-panel">
+            <div class="group08-discussion-title">
+              <i data-lucide="book-open" width="14" height="14" aria-hidden="true"></i>
+              About This Algorithm
+            </div>
+            <p class="group08-discussion-body">
+              The Division Algorithm states that for any two positive integers m and n (where m &gt; n), there exist
+              unique integers q (quotient) and r (remainder) such that m = n·q + r, where 0 ≤ r &lt; n. This fundamental
+              theorem underpins modular arithmetic and is a building block for the Euclidean Algorithm.
+            </p>
+            <div class="group08-formula-chip">
+              <i data-lucide="function-square" width="12" height="12" aria-hidden="true"></i>
+              m = n · q + r, where 0 ≤ r &lt; n
+            </div>
+          </div>
+        </div>
+        <div class="group08-right-column">
+          <div class="group08-glass-panel">
+            <div class="group08-input-zone">
+              <div class="group08-input-zone-title">
+                <i data-lucide="sliders-horizontal" width="14" height="14" aria-hidden="true"></i>
+                Enter Two Integers
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="div-input1">First positive integer</label>
+                <input type="number" id="div-input1" class="group08-input-field" placeholder="e.g. 17" min="1"
+                  aria-describedby="div-error">
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="div-input2">Second positive integer (different from
+                  first)</label>
+                <input type="number" id="div-input2" class="group08-input-field" placeholder="e.g. 5" min="1"
+                  aria-describedby="div-error">
+              </div>
+              <div id="div-error" class="group08-error-msg" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" width="13" height="13" aria-hidden="true"></i>
+                <span id="div-error-text"></span>
+              </div>
+              <div class="group08-action-row">
+                <button class="group08-compute-btn" id="div-compute-btn" aria-label="Compute Division">
+                  <i data-lucide="play-circle" width="16" height="16" aria-hidden="true"></i> Compute
+                </button>
+                <button class="group08-refresh-btn" id="div-refresh-btn" aria-label="Refresh"><i data-lucide="rotate-cw"
+                    width="16" height="16" aria-hidden="true"></i> Refresh</button>
+              </div>
+            </div>
+          </div>
+          <div class="group08-glass-panel">
+            <div class="group08-result-zone" id="div-result-zone" aria-live="polite">
+              <div class="group08-result-label">
+                <i data-lucide="list-ordered" width="14" height="14" aria-hidden="true"></i>
+                Output
+                <span class="group08-result-meta" id="div-result-meta"></span>
+              </div>
+              <div class="group08-divider"></div>
+              <div class="group08-result-list" id="div-result-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-euclidean" class="group08-screen">
+      <div class="group08-sub-layout">
+        <div class="group08-sub-header">
+          <div class="group08-sub-title-block">
+            <div class="group08-sub-eyebrow">Algorithm 02</div>
+            <h2 class="group08-sub-title">Euclidean Algorithm</h2>
+          </div>
+          <button class="group08-sub-back" aria-label="Return to main menu">
+            <i data-lucide="arrow-left" width="14" height="14" aria-hidden="true"></i>
+            Main Menu
+          </button>
+        </div>
+        <div class="group08-glass-panel">
+          <div class="group08-discussion-panel">
+            <div class="group08-discussion-title">
+              <i data-lucide="book-open" width="14" height="14" aria-hidden="true"></i>
+              About This Algorithm
+            </div>
+            <p class="group08-discussion-body">
+              The Euclidean Algorithm is an efficient method for computing the greatest common divisor (GCD) of two
+              positive integers. It repeatedly applies the Division Algorithm until the remainder is zero. The last
+              non-zero remainder is the GCD. From the GCD, the least common multiple (LCM) can be derived as LCM(a,b) =
+              (a × b) / GCD(a,b).
+            </p>
+            <div class="group08-formula-chip">
+              <i data-lucide="function-square" width="12" height="12" aria-hidden="true"></i>
+              gcd(m, n) = gcd(n, m mod n) until r = 0
+            </div>
+          </div>
+        </div>
+        <div class="group08-right-column">
+          <div class="group08-glass-panel">
+            <div class="group08-input-zone">
+              <div class="group08-input-zone-title">
+                <i data-lucide="sliders-horizontal" width="14" height="14" aria-hidden="true"></i>
+                Enter Two Integers
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="euc-input1">First positive integer</label>
+                <input type="number" id="euc-input1" class="group08-input-field" placeholder="e.g. 48" min="1"
+                  aria-describedby="euc-error">
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="euc-input2">Second positive integer</label>
+                <input type="number" id="euc-input2" class="group08-input-field" placeholder="e.g. 18" min="1"
+                  aria-describedby="euc-error">
+              </div>
+              <div id="euc-error" class="group08-error-msg" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" width="13" height="13" aria-hidden="true"></i>
+                <span id="euc-error-text"></span>
+              </div>
+              <div class="group08-action-row">
+                <button class="group08-compute-btn" id="euc-compute-btn" aria-label="Compute Euclidean">
+                  <i data-lucide="play-circle" width="16" height="16" aria-hidden="true"></i> Compute
+                </button>
+                <button class="group08-refresh-btn" id="euc-refresh-btn" aria-label="Refresh"><i data-lucide="rotate-cw"
+                    width="16" height="16" aria-hidden="true"></i> Refresh</button>
+              </div>
+            </div>
+          </div>
+          <div class="group08-glass-panel">
+            <div class="group08-result-zone" id="euc-result-zone" aria-live="polite">
+              <div class="group08-result-label">
+                <i data-lucide="list-ordered" width="14" height="14" aria-hidden="true"></i>
+                Output
+                <span class="group08-result-meta" id="euc-result-meta"></span>
+              </div>
+              <div class="group08-divider"></div>
+              <div class="group08-result-list" id="euc-result-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-collatz" class="group08-screen">
+      <div class="group08-sub-layout">
+        <div class="group08-sub-header">
+          <div class="group08-sub-title-block">
+            <div class="group08-sub-eyebrow">Algorithm 03</div>
+            <h2 class="group08-sub-title">Collatz Sequence</h2>
+          </div>
+          <button class="group08-sub-back" aria-label="Return to main menu">
+            <i data-lucide="arrow-left" width="14" height="14" aria-hidden="true"></i>
+            Main Menu
+          </button>
+        </div>
+        <div class="group08-glass-panel">
+          <div class="group08-discussion-panel">
+            <div class="group08-discussion-title">
+              <i data-lucide="book-open" width="14" height="14" aria-hidden="true"></i>
+              About This Sequence
+            </div>
+            <p class="group08-discussion-body">
+              The Collatz conjecture (also known as the 3n+1 problem) generates a sequence from any positive integer: if
+              the current term is even, divide by 2; if odd, multiply by 3 and add 1. The conjecture states that this
+              sequence always eventually reaches 1, regardless of the starting value. It remains one of the most famous
+              unsolved problems in mathematics.
+            </p>
+            <div class="group08-formula-chip">
+              <i data-lucide="function-square" width="12" height="12" aria-hidden="true"></i>
+              If even: n/2 | If odd: 3n + 1
+            </div>
+          </div>
+        </div>
+        <div class="group08-right-column">
+          <div class="group08-glass-panel">
+            <div class="group08-input-zone">
+              <div class="group08-input-zone-title">
+                <i data-lucide="sliders-horizontal" width="14" height="14" aria-hidden="true"></i>
+                Compute Sequence
+              </div>
+              <div class="group08-input-group">
+                <label class="group08-input-label" for="col-input">Initial value (positive integer)</label>
+                <input type="number" id="col-input" class="group08-input-field" placeholder="e.g. 27" min="1"
+                  aria-describedby="col-error">
+              </div>
+              <div id="col-error" class="group08-error-msg" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" width="13" height="13" aria-hidden="true"></i>
+                <span id="col-error-text"></span>
+              </div>
+              <div class="group08-action-row">
+                <button class="group08-compute-btn" id="col-compute-btn" aria-label="Compute Collatz sequence">
+                  <i data-lucide="play-circle" width="16" height="16" aria-hidden="true"></i> Compute
+                </button>
+                <button class="group08-refresh-btn" id="col-refresh-btn" aria-label="Refresh"><i data-lucide="rotate-cw"
+                    width="16" height="16" aria-hidden="true"></i> Refresh</button>
+              </div>
+            </div>
+          </div>
+          <div class="group08-glass-panel">
+            <div class="group08-result-zone" id="col-result-zone" aria-live="polite">
+              <div class="group08-result-label">
+                <i data-lucide="list-ordered" width="14" height="14" aria-hidden="true"></i>
+                Output
+                <span class="group08-result-meta" id="col-result-meta"></span>
+              </div>
+              <div class="group08-divider"></div>
+              <div class="group08-result-list" id="col-result-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="exit-overlay" class="group08-exit-overlay" role="dialog" aria-modal="true"
+    aria-labelledby="exit-dialog-title">
+    <div class="group08-exit-dialog">
+      <div class="group08-exit-icon"><i data-lucide="log-out" width="32" height="32" aria-hidden="true"></i></div>
+      <div id="exit-dialog-title" class="group08-exit-title">End Session?</div>
+      <div class="group08-exit-actions">
+        <button class="group08-exit-cancel" id="exit-cancel">Stay</button>
+        <button class="group08-exit-confirm" id="exit-confirm">Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="exit-final" class="group08-exit-final" aria-live="polite">
+    <div class="group08-exit-icon"><i data-lucide="check-circle" width="40" height="40" aria-hidden="true"></i></div>
+    <div class="group08-exit-final-text">Session Ended</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

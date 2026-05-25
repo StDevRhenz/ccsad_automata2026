@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane Axioms | Mathematical Atelier</title>
+    
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cinzel for headings (magical/classic vibe), Lato for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: { DEFAULT: '#fdfbf7', dark: '#eaddc5', darker: '#d1bfae' },
+                        ink: { DEFAULT: '#2c3e50', light: '#4a5568', magic: '#d4af37' },
+                        accent: { red: '#8b0000', teal: '#005f73' }
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Lato', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #fdfbf7;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            color: #2c3e50;
+        }
+
+        /* The glowing ink effect for interactive elements */
+        .magic-hover { transition: all 0.3s ease; }
+        .magic-hover:hover {
+            color: #d4af37;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Geometric decorative borders */
+        .geo-border {
+            border: 2px solid #eaddc5;
+            position: relative;
+        }
+        .geo-border::before, .geo-border::after {
+            content: ''; position: absolute; width: 10px; height: 10px;
+            border: 2px solid #d4af37; background: #fdfbf7;
+        }
+        .geo-border::before { top: -6px; left: -6px; }
+        .geo-border::after { bottom: -6px; right: -6px; }
+
+        .geo-border-complex {
+            position: relative; padding: 2px;
+            background: linear-gradient(45deg, #eaddc5, transparent, #eaddc5);
+        }
+        .geo-border-complex > div {
+            background-color: #fdfbf7;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #eaddc5; }
+        ::-webkit-scrollbar-thumb { background: #2c3e50; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+
+        /* Input styling */
+        input[type="number"], input[type="text"] {
+            background: rgba(234, 221, 197, 0.3);
+            border: 1px solid #eaddc5;
+            color: #2c3e50;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        input[type="number"]:focus, input[type="text"]:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen flex flex-col">
+
+    <nav class="border-b-2 border-parchment-dark py-4 px-6 md:px-12 flex justify-between items-center bg-parchment/90 backdrop-blur-sm sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <svg width="40" height="40" viewBox="0 0 100 100" class="text-ink-magic">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" />
+                <polygon points="50,10 90,80 10,80" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="50" cy="55" r="15" fill="none" stroke="currentColor" stroke-width="1" />
+            </svg>
+            <span class="font-heading font-bold text-2xl tracking-wider text-ink">Arcane Axioms</span>
+        </div>
+        
+        <div class="hidden md:flex gap-8 font-heading text-sm tracking-widest font-semibold">
+            <a href="#" class="hover:text-ink-magic transition-colors">The Grand Hall</a>
+            <a href="#" class="text-ink-magic border-b-2 border-ink-magic">My Atelier</a>
+            <a href="#" class="hover:text-ink-magic transition-colors">Grimoire</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="text-right hidden sm:block">
+                <p class="text-sm font-bold text-ink">Apprentice</p>
+                <p class="text-xs text-ink-light italic">Mathematical Operations</p>
+            </div>
+            <div class="w-10 h-10 rounded-full border-2 border-ink-magic overflow-hidden bg-parchment-dark flex items-center justify-center">
+                 <i class="fa-solid fa-user-graduate text-ink"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-app" class="flex-grow container mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
+        
+        <!-- Left Sidebar: Menu / Navigation -->
+        <aside class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-6">
+            <div class="geo-border p-4 bg-white/50">
+                 <h3 class="font-heading font-bold text-lg mb-3 border-b border-parchment-dark pb-2">Mathematical Spells</h3>
+                 <p class="text-xs text-ink-light italic mb-4">Select an operation to perform your inscription.</p>
+                 
+                 <ul class="space-y-2 text-sm font-heading font-semibold">
+                    <li>
+                        <button onclick="showSection('division')" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-parchment-dark transition-colors text-ink hover:text-ink-magic">
+                            <i class="fa-solid fa-divide w-5 text-center text-ink-magic"></i> Division Algorithm
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('euclidean')" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-parchment-dark transition-colors text-ink hover:text-ink-magic">
+                            <i class="fa-solid fa-circle-nodes w-5 text-center text-ink-magic"></i> Euclidean Algorithm
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('collatz')" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-parchment-dark transition-colors text-ink hover:text-ink-magic">
+                            <i class="fa-solid fa-arrow-trend-down w-5 text-center text-ink-magic"></i> Collatz Sequence
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('fibonacci')" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-parchment-dark transition-colors text-ink hover:text-ink-magic">
+                            <i class="fa-solid fa-leaf w-5 text-center text-ink-magic"></i> Fibonacci Numbers
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('lucas')" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-parchment-dark transition-colors text-ink hover:text-ink-magic">
+                            <i class="fa-brands fa-pagelines w-5 text-center text-ink-magic"></i> Lucas Numbers
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('tribonacci')" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-parchment-dark transition-colors text-ink hover:text-ink-magic">
+                            <i class="fa-solid fa-seedling w-5 text-center text-ink-magic"></i> Tribonacci Numbers
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('palindrome')" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-parchment-dark transition-colors text-ink hover:text-ink-magic">
+                            <i class="fa-solid fa-arrows-left-right w-5 text-center text-ink-magic"></i> Palindrome Mirror
+                        </button>
+                    </li>
+                 </ul>
+                 
+                 <div class="mt-6 pt-4 border-t border-parchment-dark">
+                     <button onclick="exitApp()" class="w-full text-left flex items-center gap-3 p-2 rounded hover:bg-accent-red/20 transition-colors text-accent-red font-bold">
+                        <i class="fa-solid fa-person-walking-arrow-right w-5 text-center"></i> Exit Atelier
+                     </button>
+                 </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area / Drafting Canvas -->
+        <section class="flex-grow flex flex-col gap-6">
+            
+            <div class="geo-border-complex flex-grow rounded-sm flex flex-col min-h-[500px]">
+                <div class="flex-grow p-8 bg-[#fdfbf7] relative">
+                    
+                    <!-- Faint grid background for the drafting feel -->
+                    <div class="absolute inset-0 z-0 pointer-events-none" style="background-image: linear-gradient(#eaddc5 1px, transparent 1px), linear-gradient(90deg, #eaddc5 1px, transparent 1px); background-size: 20px 20px; opacity: 0.5;"></div>
+
+                    <div id="welcome" class="math-section relative z-10 flex flex-col items-center justify-center h-full text-center">
+                        <i class="fa-solid fa-hat-wizard text-6xl text-ink-magic mb-6 opacity-80"></i>
+                        <h2 class="font-heading text-3xl font-bold text-ink mb-4">Welcome to the Workspace</h2>
+                        <p class="text-ink-light max-w-md mx-auto">
+                            Select a mathematical theorem from your Grimoire on the left to begin your incantations. Ensure your ink is full and your mind is sharp.
+                        </p>
+                    </div>
+
+                    <div id="division" class="math-section hidden relative z-10 flex flex-col h-full">
+                        <h2 class="font-heading text-3xl font-bold text-ink border-b-2 border-ink-magic pb-2 mb-4">Division Algorithm</h2>
+                        <p class="mb-6 text-ink-light italic">"Expressing the parts of a whole: dividend = divisor × quotient + remainder"</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-bold text-ink mb-1">First Number</label>
+                                <input type="number" id="dividend" class="w-full p-3 rounded-sm font-mono text-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-ink mb-1">Second Number</label>
+                                <input type="number" id="divisor" class="w-full p-3 rounded-sm font-mono text-lg">
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <button onclick="computeDivision()" class="magic-hover border-2 border-ink px-6 py-2 font-heading font-bold bg-parchment text-ink flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib"></i> Compute Seal
+                            </button>
+                            <button onclick="showSection('welcome')" class="px-6 py-2 font-heading font-bold text-ink-light hover:text-ink transition-colors">
+                                Clear Canvas
+                            </button>
+                        </div>
+                        
+                        <div class="flex-grow flex flex-col">
+                            <h3 class="text-sm font-bold text-ink mb-2 uppercase tracking-widest">Resulting Inscription</h3>
+                            <pre id="division-result" class="w-full flex-grow min-h-[150px] p-4 bg-parchment-dark/20 border border-parchment-dark rounded-sm font-mono text-ink overflow-y-auto"></pre>
+                        </div>
+                    </div>
+
+                    <div id="euclidean" class="math-section hidden relative z-10 flex flex-col h-full">
+                        <h2 class="font-heading text-3xl font-bold text-ink border-b-2 border-ink-magic pb-2 mb-4">Euclidean Algorithm</h2>
+                        <p class="mb-6 text-ink-light italic">"Discovering the Greatest Common Divisor through iterative reduction."</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-bold text-ink mb-1">First Number</label>
+                                <input type="number" id="num1" class="w-full p-3 rounded-sm font-mono text-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-ink mb-1">Second Number</label>
+                                <input type="number" id="num2" class="w-full p-3 rounded-sm font-mono text-lg">
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <button onclick="computeEuclidean()" class="magic-hover border-2 border-ink px-6 py-2 font-heading font-bold bg-parchment text-ink flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib"></i> Compute Seal
+                            </button>
+                            <button onclick="showSection('welcome')" class="px-6 py-2 font-heading font-bold text-ink-light hover:text-ink transition-colors">
+                                Clear Canvas
+                            </button>
+                        </div>
+                        
+                        <div class="flex-grow flex flex-col">
+                            <h3 class="text-sm font-bold text-ink mb-2 uppercase tracking-widest">Resulting Inscription</h3>
+                            <pre id="euclidean-result" class="w-full flex-grow min-h-[150px] p-4 bg-parchment-dark/20 border border-parchment-dark rounded-sm font-mono text-ink overflow-y-auto"></pre>
+                        </div>
+                    </div>
+
+                    <div id="collatz" class="math-section hidden relative z-10 flex flex-col h-full">
+                        <h2 class="font-heading text-3xl font-bold text-ink border-b-2 border-ink-magic pb-2 mb-4">Collatz Sequence</h2>
+                        <p class="mb-6 text-ink-light italic">"The hailstone numbers: half if even, triple plus one if odd."</p>
+                        
+                        <div class="w-full md:w-1/2 mb-6">
+                            <label class="block text-sm font-bold text-ink mb-1">Enter a positive integer</label>
+                            <input type="number" id="collatz-input" class="w-full p-3 rounded-sm font-mono text-lg">
+                        </div>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <button onclick="computeCollatz()" class="magic-hover border-2 border-ink px-6 py-2 font-heading font-bold bg-parchment text-ink flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib"></i> Generate Sequence
+                            </button>
+                            <button onclick="showSection('welcome')" class="px-6 py-2 font-heading font-bold text-ink-light hover:text-ink transition-colors">
+                                Clear Canvas
+                            </button>
+                        </div>
+                        
+                        <div class="flex-grow flex flex-col">
+                            <h3 class="text-sm font-bold text-ink mb-2 uppercase tracking-widest">Resulting Inscription</h3>
+                            <pre id="collatz-result" class="w-full flex-grow min-h-[150px] p-4 bg-parchment-dark/20 border border-parchment-dark rounded-sm font-mono text-ink whitespace-pre-wrap break-words overflow-y-auto"></pre>
+                        </div>
+                    </div>
+
+                    <div id="fibonacci" class="math-section hidden relative z-10 flex flex-col h-full">
+                        <h2 class="font-heading text-3xl font-bold text-ink border-b-2 border-ink-magic pb-2 mb-4">Fibonacci Numbers</h2>
+                        <p class="mb-6 text-ink-light italic">"Nature's spiral: each number is the sum of the two preceding ones."</p>
+                        
+                        <div class="w-full md:w-1/2 mb-6">
+                            <label class="block text-sm font-bold text-ink mb-1">Number of terms to generate</label>
+                            <input type="number" id="fibonacci-input" class="w-full p-3 rounded-sm font-mono text-lg">
+                        </div>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <button onclick="generateFibonacci()" class="magic-hover border-2 border-ink px-6 py-2 font-heading font-bold bg-parchment text-ink flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib"></i> Draw Spiral
+                            </button>
+                            <button onclick="showSection('welcome')" class="px-6 py-2 font-heading font-bold text-ink-light hover:text-ink transition-colors">
+                                Clear Canvas
+                            </button>
+                        </div>
+                        
+                        <div class="flex-grow flex flex-col">
+                            <h3 class="text-sm font-bold text-ink mb-2 uppercase tracking-widest">Resulting Inscription</h3>
+                            <pre id="fibonacci-result" class="w-full flex-grow min-h-[150px] p-4 bg-parchment-dark/20 border border-parchment-dark rounded-sm font-mono text-ink whitespace-pre-wrap break-words overflow-y-auto"></pre>
+                        </div>
+                    </div>
+
+                    <div id="lucas" class="math-section hidden relative z-10 flex flex-col h-full">
+                        <h2 class="font-heading text-3xl font-bold text-ink border-b-2 border-ink-magic pb-2 mb-4">Lucas Numbers</h2>
+                        <p class="mb-6 text-ink-light italic">"A cousin to the golden spiral, beginning with 2 and 1."</p>
+                        
+                        <div class="w-full md:w-1/2 mb-6">
+                            <label class="block text-sm font-bold text-ink mb-1">Number of terms to generate</label>
+                            <input type="number" id="lucas-input" class="w-full p-3 rounded-sm font-mono text-lg">
+                        </div>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <button onclick="generateLucas()" class="magic-hover border-2 border-ink px-6 py-2 font-heading font-bold bg-parchment text-ink flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib"></i> Draw Sequence
+                            </button>
+                            <button onclick="showSection('welcome')" class="px-6 py-2 font-heading font-bold text-ink-light hover:text-ink transition-colors">
+                                Clear Canvas
+                            </button>
+                        </div>
+                        
+                        <div class="flex-grow flex flex-col">
+                            <h3 class="text-sm font-bold text-ink mb-2 uppercase tracking-widest">Resulting Inscription</h3>
+                            <pre id="lucas-result" class="w-full flex-grow min-h-[150px] p-4 bg-parchment-dark/20 border border-parchment-dark rounded-sm font-mono text-ink whitespace-pre-wrap break-words overflow-y-auto"></pre>
+                        </div>
+                    </div>
+
+                    <div id="tribonacci" class="math-section hidden relative z-10 flex flex-col h-full">
+                        <h2 class="font-heading text-3xl font-bold text-ink border-b-2 border-ink-magic pb-2 mb-4">Tribonacci Numbers</h2>
+                        <p class="mb-6 text-ink-light italic">"A complex weave: each number is the sum of the three preceding ones."</p>
+                        
+                        <div class="w-full md:w-1/2 mb-6">
+                            <label class="block text-sm font-bold text-ink mb-1">Number of terms to generate</label>
+                            <input type="number" id="tribonacci-input" class="w-full p-3 rounded-sm font-mono text-lg">
+                        </div>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <button onclick="generateTribonacci()" class="magic-hover border-2 border-ink px-6 py-2 font-heading font-bold bg-parchment text-ink flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib"></i> Draw Sequence
+                            </button>
+                            <button onclick="showSection('welcome')" class="px-6 py-2 font-heading font-bold text-ink-light hover:text-ink transition-colors">
+                                Clear Canvas
+                            </button>
+                        </div>
+                        
+                        <div class="flex-grow flex flex-col">
+                            <h3 class="text-sm font-bold text-ink mb-2 uppercase tracking-widest">Resulting Inscription</h3>
+                            <pre id="tribonacci-result" class="w-full flex-grow min-h-[150px] p-4 bg-parchment-dark/20 border border-parchment-dark rounded-sm font-mono text-ink whitespace-pre-wrap break-words overflow-y-auto"></pre>
+                        </div>
+                    </div>
+
+                    <!-- New Palindrome Section -->
+                    <div id="palindrome" class="math-section hidden relative z-10 flex flex-col h-full">
+                        <h2 class="font-heading text-3xl font-bold text-ink border-b-2 border-ink-magic pb-2 mb-4">Palindrome Mirror</h2>
+                        <p class="mb-6 text-ink-light italic">"A perfect reflection: runes that read the same from left to right as they do from right to left."</p>
+                        
+                        <div class="w-full md:w-1/2 mb-6">
+                            <label class="block text-sm font-bold text-ink mb-1">Scribe a word, phrase, or number</label>
+                            <input type="text" id="palindrome-input" class="w-full p-3 rounded-sm font-mono text-lg">
+                        </div>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <button onclick="computePalindrome()" class="magic-hover border-2 border-ink px-6 py-2 font-heading font-bold bg-parchment text-ink flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib"></i> Reflect Rune
+                            </button>
+                            <button onclick="showSection('welcome')" class="px-6 py-2 font-heading font-bold text-ink-light hover:text-ink transition-colors">
+                                Clear Canvas
+                            </button>
+                        </div>
+                        
+                        <div class="flex-grow flex flex-col">
+                            <h3 class="text-sm font-bold text-ink mb-2 uppercase tracking-widest">Resulting Inscription</h3>
+                            <pre id="palindrome-result" class="w-full flex-grow min-h-[150px] p-4 bg-parchment-dark/20 border border-parchment-dark rounded-sm font-mono text-ink whitespace-pre-wrap break-words overflow-y-auto"></pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <footer class="flex justify-between text-xs text-ink-light font-mono bg-parchment-dark/20 p-2 rounded border border-parchment-dark">
+                <span><i class="fa-solid fa-circle-check text-green-700 mr-1"></i> Ink supply stable</span>
+                <span>Workspace Coordinates: Active</span>
+            </footer>
+
+        </section>
+    </main>
+
+    <!-- Custom overlay to replace native alert() -->
+    <div id="exit-overlay" class="hidden fixed inset-0 bg-parchment/95 backdrop-blur-md z-[100] flex flex-col items-center justify-center">
+        <svg width="120" height="120" viewBox="0 0 100 100" class="text-ink-magic mb-6 opacity-80">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M 30 50 L 70 50 M 50 30 L 50 70" stroke="currentColor" stroke-width="2" />
+            <circle cx="50" cy="50" r="10" fill="currentColor" />
+        </svg>
+        <h1 class="font-heading text-4xl font-bold text-ink mb-4">The Atelier is Closed</h1>
+        <p class="text-ink-light font-body text-lg italic mb-8">Your grimoire has been safely stowed away. Rest well, Apprentice.</p>
+        <button onclick="reopenApp()" class="magic-hover border-2 border-ink px-6 py-3 font-heading font-bold bg-parchment text-ink">
+            Reopen Atelier
+        </button>
+    </div>
+
+    <script>
+        // UI Navigation Logic
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.math-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // Show target section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Clear previous results and inputs when navigating
+            clearInputs(sectionId);
+        }
+
+        function clearInputs(sectionId) {
+            const section = document.getElementById(sectionId);
+            if(!section) return;
+            
+            const inputs = section.querySelectorAll('input');
+            const pres = section.querySelectorAll('pre');
+            
+            inputs.forEach(input => input.value = '');
+            pres.forEach(pre => pre.textContent = '');
+        }
+
+        function exitApp() {
+            // Replaces the alert() with a thematic UI overlay
+            document.getElementById('main-app').style.display = 'none';
+            document.getElementById('exit-overlay').classList.remove('hidden');
+        }
+
+        function reopenApp() {
+            document.getElementById('main-app').style.display = 'flex';
+            document.getElementById('exit-overlay').classList.add('hidden');
+            showSection('welcome');
+        }
+
+        // Mathematical Logic (From User Code)
+        function computeDivision() {
+            const firstNumber = parseInt(document.getElementById('dividend').value);
+            const secondNumber = parseInt(document.getElementById('divisor').value);
+            const resultElement = document.getElementById('division-result');
+
+            if (isNaN(firstNumber) || isNaN(secondNumber)) {
+                resultElement.textContent = 'Please draw valid numeric runes.';
+                return;
+            }
+
+            const dividend = Math.max(firstNumber, secondNumber);
+            const divisor = Math.min(firstNumber, secondNumber);
+
+            if (divisor === 0) {
+                resultElement.textContent = 'Error: A divisor of zero breaks the magical binding!';
+                return;
+            }
+
+            const quotient = Math.floor(dividend / divisor);
+            const remainder = dividend % divisor;
+
+            // Display labeled values for clarity
+            resultElement.textContent =
+                `Dividend: ${dividend}\n` +
+                `Divisor:  ${divisor}\n` +
+                `Quotient: ${quotient}\n` +
+                `Remainder:${remainder}\n\n` +
+                `Equation: ${dividend} = ${divisor} × ${quotient} + ${remainder}`;
+        }
+
+        function computeEuclidean() {
+            const inputA = parseInt(document.getElementById('num1').value);
+            const inputB = parseInt(document.getElementById('num2').value);
+            const resultElement = document.getElementById('euclidean-result');
+
+            if (isNaN(inputA) || isNaN(inputB) || inputA <= 0 || inputB <= 0) {
+                resultElement.textContent = 'Please enter positive integers to begin the reduction.';
+                return;
+            }
+
+            // Start with the larger integer first for clearer steps
+            let num1 = Math.max(inputA, inputB);
+            let num2 = Math.min(inputA, inputB);
+
+            let steps = '';
+            while (num2 !== 0) {
+                const quotient = Math.floor(num1 / num2);
+                const remainder = num1 % num2;
+                steps += `${num1} = ${num2} (${quotient}) + ${remainder}\n`;
+                num1 = num2;
+                num2 = remainder;
+            }
+
+            const gcd = num1;
+            const larger = Math.max(inputA, inputB);
+            const smaller = Math.min(inputA, inputB);
+            const lcm = (inputA * inputB) / gcd;
+
+            resultElement.textContent =
+                `SOLUTION:\n` +
+                `${steps}\n` +
+                `The integers are ${larger} and ${smaller}\n` +
+                `The greatest common divisor of ${larger} and ${smaller} is ${gcd}\n` +
+                `The least common multiple of ${larger} and ${smaller} is ${lcm}`;
+        }
+
+        function computeCollatz() {
+            let n = parseInt(document.getElementById('collatz-input').value);
+            const resultElement = document.getElementById('collatz-result');
+
+            if (isNaN(n) || n <= 0 || n % 2 === 0) {
+                resultElement.textContent = 'Please enter a positive odd integer.';
+                return;
+            }
+
+            let sequence = '';
+            let steps = 0;
+            while (n !== 1) {
+                sequence += n + ' , ';
+                n = n % 2 === 0 ? n / 2 : 3 * n + 1;
+                steps++;
+            }
+            sequence += '1';
+            resultElement.textContent = `Sequence Flow:\n${sequence}\n\nTotal Transformations: ${steps}`;
+        }
+
+        function generateFibonacci() {
+            const n = parseInt(document.getElementById('fibonacci-input').value);
+            const resultElement = document.getElementById('fibonacci-result');
+
+            if (isNaN(n) || n <= 2) {
+                resultElement.textContent = 'Please enter a number greater than 2 to form a sequence.';
+                return;
+            }
+
+            const sequence = [0, 1];
+            for (let i = 2; i < n; i++) {
+                sequence.push(sequence[i - 1] + sequence[i - 2]);
+            }
+            resultElement.textContent = `Fibonacci Spiral Plot:\n\n${sequence.join(' , ')}`;
+        }
+
+        function generateLucas() {
+            const n = parseInt(document.getElementById('lucas-input').value);
+            const resultElement = document.getElementById('lucas-result');
+
+            if (isNaN(n) || n <= 2) {
+                resultElement.textContent = 'Please enter a number greater than 2.';
+                return;
+            }
+
+            const sequence = [2, 1];
+            for (let i = 2; i < n; i++) {
+                sequence.push(sequence[i - 1] + sequence[i - 2]);
+            }
+            resultElement.textContent = `Lucas Sequence Plot:\n\n${sequence.join(' , ')}`;
+        }
+
+        function generateTribonacci() {
+            const n = parseInt(document.getElementById('tribonacci-input').value);
+            const resultElement = document.getElementById('tribonacci-result');
+
+            if (isNaN(n) || n <= 3) {
+                resultElement.textContent = 'Please enter a number greater than 3 for this complex weave.';
+                return;
+            }
+
+            const sequence = [0, 0, 1];
+            for (let i = 3; i < n; i++) {
+                sequence.push(sequence[i - 1] + sequence[i - 2] + sequence[i - 3]);
+            }
+            resultElement.textContent = `Tribonacci Weave Plot:\n\n${sequence.join(' , ')}`;
+        }
+
+        // Symmetrical Palindrome Mirror Logic
+        function computePalindrome() {
+            const inputStr = document.getElementById('palindrome-input').value.trim();
+            const resultElement = document.getElementById('palindrome-result');
+
+            if (!inputStr) {
+                resultElement.textContent = 'Please scribe a word, phrase, or numeric rune to mirror.';
+                return;
+            }
+
+            // Normalizing string: lowercase, stripping non-alphanumeric characters for clean analysis
+            const cleanStr = inputStr.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const reversedCleanStr = cleanStr.split('').reverse().join('');
+            
+            // Reversing the display string exactly as input for the visual "mirror" effect
+            const exactReversed = inputStr.split('').reverse().join('');
+            const isPalindrome = cleanStr === reversedCleanStr && cleanStr.length > 0;
+
+            let output = `Original Inscription:  "${inputStr}"\n`;
+            output += `Mirror Reflection:     "${exactReversed}"\n\n`;
+
+            if (isPalindrome) {
+                output += `✨ SUCCESS: A Perfect Reflective Seal! ✨\n`;
+                output += `This rune flows symmetrically in both directions. The cosmic balance is maintained perfectly.`;
+            } else {
+                output += `⚠️ WARNING: Asymmetrical Pattern!\n`;
+                output += `The reflections fail to align. The magic breaks because balance has not been established.`;
+            }
+
+            resultElement.textContent = output;
+        }
+    </script>
+</body>
+</html>
