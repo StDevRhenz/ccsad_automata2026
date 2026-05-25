@@ -54,6 +54,9 @@ body::before {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   max-width: 1100px;
   margin: 0 auto;
   padding: 120px 20px 40px; /* account for fixed navbar */
@@ -95,4 +98,41 @@ body::before {
 /* Card fade-in */
 .card-hidden { opacity:0; transform: translateY(14px); transition: all var(--ease-short) ease; }
 .card-visible { opacity:1; transform: translateY(0); }
+
+.site-footer {
+  margin-top: 80px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  opacity: 0.6;
+}
+
+.footer-label {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.footer-members {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.footer-members a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--ease-short) ease, text-decoration-color var(--ease-short) ease;
+}
+
+.footer-members a:hover {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 

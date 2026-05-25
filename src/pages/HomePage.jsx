@@ -40,6 +40,17 @@ export default function HomePage() {
       {activeGroup && (
         <GroupModal group={activeGroup} onClose={() => setActiveGroup(null)} />
       )}
+
+      <footer className="site-footer">
+        <div className="footer-label">Automata 2026 · III-CCSAD</div>
+        <div className="footer-members">
+          <a href="https://github.com/StDevRhenz" target="_blank" rel="noopener noreferrer">Rhenz Ganotice</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://github.com/shamKirzon" target="_blank" rel="noopener noreferrer">Shammy Kierzon Suyat</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://github.com/yajiiiii" target="_blank" rel="noopener noreferrer">Ijay Jaculbe</a>
+        </div>
+      </footer>
     </main>
   )
 }
